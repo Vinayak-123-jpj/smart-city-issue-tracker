@@ -63,7 +63,7 @@ const AnalyticsDashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         <Navbar user={user} onLogout={logout} />
         <LoadingSpinner message="Loading analytics..." />
       </div>
@@ -71,17 +71,17 @@ const AnalyticsDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Navbar user={user} onLogout={logout} />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900">Analytics Dashboard</h2>
-          <p className="mt-1 text-gray-600">Overview of civic issue management</p>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Analytics Dashboard</h2>
+          <p className="mt-1 text-gray-600 dark:text-gray-400">Overview of civic issue management</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 rounded-xl shadow-lg p-6 text-white">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-blue-100 text-sm mb-1">Total Issues</p>
@@ -95,7 +95,7 @@ const AnalyticsDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl shadow-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 dark:from-yellow-600 dark:to-yellow-700 rounded-xl shadow-lg p-6 text-white">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-yellow-100 text-sm mb-1">Pending</p>
@@ -109,7 +109,7 @@ const AnalyticsDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700 rounded-xl shadow-lg p-6 text-white">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-purple-100 text-sm mb-1">In Progress</p>
@@ -123,7 +123,7 @@ const AnalyticsDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 rounded-xl shadow-lg p-6 text-white">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-green-100 text-sm mb-1">Resolved</p>
@@ -139,12 +139,12 @@ const AnalyticsDashboard = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-xl shadow-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Resolution Rate</h3>
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Resolution Rate</h3>
             <div className="flex items-center justify-center">
               <div className="relative w-32 h-32">
                 <svg className="w-full h-full transform -rotate-90">
-                  <circle cx="64" cy="64" r="56" stroke="#e5e7eb" strokeWidth="12" fill="none" />
+                  <circle cx="64" cy="64" r="56" stroke="#e5e7eb" className="dark:stroke-gray-700" strokeWidth="12" fill="none" />
                   <circle
                     cx="64"
                     cy="64"
@@ -157,35 +157,35 @@ const AnalyticsDashboard = () => {
                   />
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-3xl font-bold text-gray-900">{stats.resolutionRate}%</span>
+                  <span className="text-3xl font-bold text-gray-900 dark:text-white">{stats.resolutionRate}%</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Average Upvotes</h3>
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Average Upvotes</h3>
             <div className="flex items-center justify-center h-32">
               <div className="text-center">
-                <p className="text-5xl font-bold text-primary-600">{stats.avgUpvotes}</p>
-                <p className="text-gray-600 mt-2">per issue</p>
+                <p className="text-5xl font-bold text-primary-600 dark:text-primary-400">{stats.avgUpvotes}</p>
+                <p className="text-gray-600 dark:text-gray-400 mt-2">per issue</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Recent Activity</h3>
             <div className="flex items-center justify-center h-32">
               <div className="text-center">
-                <p className="text-5xl font-bold text-orange-600">{stats.recentActivity}</p>
-                <p className="text-gray-600 mt-2">last 7 days</p>
+                <p className="text-5xl font-bold text-orange-600 dark:text-orange-400">{stats.recentActivity}</p>
+                <p className="text-gray-600 dark:text-gray-400 mt-2">last 7 days</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-md p-6">
-          <h3 className="text-xl font-semibold text-gray-900 mb-6">Issues by Category</h3>
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Issues by Category</h3>
           <div className="space-y-4">
             {Object.entries(stats.categoryBreakdown)
               .sort((a, b) => b[1] - a[1])
@@ -194,12 +194,12 @@ const AnalyticsDashboard = () => {
                 return (
                   <div key={category}>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-medium text-gray-700">{category}</span>
-                      <span className="text-sm text-gray-600">{count} ({percentage}%)</span>
+                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{category}</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">{count} ({percentage}%)</span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
                       <div
-                        className="bg-primary-600 h-full rounded-full transition-all duration-500"
+                        className="bg-primary-600 dark:bg-primary-500 h-full rounded-full transition-all duration-500"
                         style={{ width: `${percentage}%` }}
                       />
                     </div>
@@ -209,9 +209,9 @@ const AnalyticsDashboard = () => {
           </div>
 
           {stats.mostReported && (
-            <div className="mt-6 p-4 bg-primary-50 rounded-lg border border-primary-200">
-              <p className="text-sm font-medium text-primary-900">
-                Most Reported: <span className="text-primary-600">{stats.mostReported[0]}</span> with {stats.mostReported[1]} issues
+            <div className="mt-6 p-4 bg-primary-50 dark:bg-primary-900 dark:bg-opacity-20 rounded-lg border border-primary-200 dark:border-primary-800">
+              <p className="text-sm font-medium text-primary-900 dark:text-primary-100">
+                Most Reported: <span className="text-primary-600 dark:text-primary-400">{stats.mostReported[0]}</span> with {stats.mostReported[1]} issues
               </p>
             </div>
           )}
