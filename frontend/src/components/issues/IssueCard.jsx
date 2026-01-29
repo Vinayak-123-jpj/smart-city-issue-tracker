@@ -21,7 +21,7 @@ const IssueCard = ({ issue, onClick }) => {
       {issue.imageUrl && (
         <div className="w-full h-48 bg-gray-200 overflow-hidden">
           <img
-            src={issue.imageUrl}
+            src={`http://localhost:5000${issue.imageUrl}`}
             alt={issue.title}
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
           />

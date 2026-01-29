@@ -494,7 +494,7 @@ const MyIssuesPage = () => {
           setShowDeleteModal(false);
           setIssueToDelete(null);
         }}
-        onConfirm={handleDeleteAccount}
+        onConfirm={handleDeleteIssue}
         title="Delete This Issue?"
         message="This action cannot be undone. The issue will be permanently removed from the system."
         confirmText="Delete Issue"
