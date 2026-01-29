@@ -1,6 +1,7 @@
 import React from 'react';
 import StatusBadge from '../common/StatusBadge';
 import CategoryBadge from '../common/CategoryBadge';
+import AIPriorityBadge from '../common/AIPriorityBadge';
 
 const IssueCard = ({ issue, onClick }) => {
   const formatDate = (dateString) => {
@@ -30,10 +31,13 @@ const IssueCard = ({ issue, onClick }) => {
 
       <div className="p-5">
         {/* Header with badges */}
-        <div className="flex items-center justify-between mb-3">
-          <CategoryBadge category={issue.category} />
-          <StatusBadge status={issue.status} />
-        </div>
+      <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+  <CategoryBadge category={issue.category} />
+  <div className="flex items-center gap-2">
+    <AIPriorityBadge issue={issue} />
+    <StatusBadge status={issue.status} />
+  </div>
+</div>
 
         {/* Title */}
         <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">

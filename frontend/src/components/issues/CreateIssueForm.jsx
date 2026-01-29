@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import MapPicker from '../common/MapPicker';
+import toast from 'react-hot-toast';
+import { improveDescription, checkDuplicates } from '../../services/aiService';
 
-const CreateIssueForm = ({ onSubmit, onCancel, isSubmitting }) => {
+const CreateIssueForm = ({ onSubmit, onCancel, isSubmitting, existingIssues = [] }) => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -14,6 +16,9 @@ const CreateIssueForm = ({ onSubmit, onCancel, isSubmitting }) => {
 
   const [showMap, setShowMap] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
+  const [isImprovingDescription, setIsImprovingDescription] = useState(false);
+  const [isCheckingDuplicate, setIsCheckingDuplicate] = useState(false);
+  const [duplicateWarning, setDuplicateWarning] = useState(null);
 
   const categories = [
     'Roads',
@@ -31,6 +36,11 @@ const CreateIssueForm = ({ onSubmit, onCancel, isSubmitting }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Clear duplicate warning when user edits
+    if (duplicateWarning) {
+      setDuplicateWarning(null);
+    }
   };
 
   const handleLocationSelect = (locationData) => {
@@ -46,12 +56,11 @@ const CreateIssueForm = ({ onSubmit, onCancel, isSubmitting }) => {
     const file = e.target.files[0];
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
-        alert('Image size should be less than 5MB');
+        toast.error('Image size should be less than 5MB');
         return;
       }
       setFormData(prev => ({ ...prev, image: file }));
       
-      // Create preview
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result);
@@ -60,12 +69,83 @@ const CreateIssueForm = ({ onSubmit, onCancel, isSubmitting }) => {
     }
   };
 
+  // AI: Improve Description
+  const handleImproveDescription = async () => {
+    if (!formData.description.trim()) {
+      toast.error('Please enter a description first');
+      return;
+    }
+
+    if (!formData.title.trim()) {
+      toast.error('Please enter a title first');
+      return;
+    }
+
+    setIsImprovingDescription(true);
+    toast.loading('AI is improving your description...', { id: 'improve-desc' });
+
+    try {
+      const improved = await improveDescription(
+        formData.description,
+        formData.title,
+        formData.category
+      );
+      
+      setFormData(prev => ({ ...prev, description: improved }));
+      toast.success('Description improved! ✨', { id: 'improve-desc' });
+    } catch (error) {
+      toast.error('Failed to improve description', { id: 'improve-desc' });
+    } finally {
+      setIsImprovingDescription(false);
+    }
+  };
+
+  // AI: Check for Duplicates
+  const handleCheckDuplicates = async () => {
+    if (!formData.title.trim() || !formData.description.trim()) {
+      toast.error('Please fill in title and description first');
+      return;
+    }
+
+    setIsCheckingDuplicate(true);
+    toast.loading('Checking for similar issues...', { id: 'check-dup' });
+
+    try {
+      const result = await checkDuplicates(
+        formData.title,
+        formData.description,
+        formData.location,
+        existingIssues
+      );
+
+      if (result.isDuplicate && result.confidence > 60) {
+        setDuplicateWarning(result);
+        toast.error(`Similar issue found! (${result.confidence}% match)`, { id: 'check-dup' });
+      } else {
+        setDuplicateWarning(null);
+        toast.success('No duplicates found! ✅', { id: 'check-dup' });
+      }
+    } catch (error) {
+      toast.error('Failed to check duplicates', { id: 'check-dup' });
+    } finally {
+      setIsCheckingDuplicate(false);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     
     if (!formData.title.trim() || !formData.description.trim()) {
-      alert('Please fill in all required fields');
+      toast.error('Please fill in all required fields');
       return;
+    }
+
+    // Show warning if duplicate detected but allow submission
+    if (duplicateWarning && duplicateWarning.confidence > 80) {
+      const confirmSubmit = window.confirm(
+        `This looks very similar to an existing issue (${duplicateWarning.confidence}% match). Are you sure you want to submit?`
+      );
+      if (!confirmSubmit) return;
     }
 
     const submitData = new FormData();
@@ -118,11 +198,24 @@ const CreateIssueForm = ({ onSubmit, onCancel, isSubmitting }) => {
         </select>
       </div>
 
-      {/* Description */}
+      {/* Description with AI Enhancement */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-          Description <span className="text-red-500">*</span>
-        </label>
+        <div className="flex items-center justify-between mb-2">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Description <span className="text-red-500">*</span>
+          </label>
+          <button
+            type="button"
+            onClick={handleImproveDescription}
+            disabled={isImprovingDescription || !formData.description.trim()}
+            className="flex items-center space-x-1 px-3 py-1 text-xs font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+            </svg>
+            <span>{isImprovingDescription ? 'Improving...' : '✨ Improve with AI'}</span>
+          </button>
+        </div>
         <textarea
           name="description"
           value={formData.description}
@@ -137,13 +230,49 @@ const CreateIssueForm = ({ onSubmit, onCancel, isSubmitting }) => {
         </p>
       </div>
 
+      {/* Duplicate Check Button */}
+      <div>
+        <button
+          type="button"
+          onClick={handleCheckDuplicates}
+          disabled={isCheckingDuplicate || !formData.title.trim() || !formData.description.trim()}
+          className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+          <span>{isCheckingDuplicate ? 'Checking...' : '🔍 Check for Similar Issues'}</span>
+        </button>
+
+        {/* Duplicate Warning */}
+        {duplicateWarning && duplicateWarning.isDuplicate && (
+          <div className="mt-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+            <div className="flex items-start space-x-3">
+              <svg className="w-6 h-6 text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <div className="flex-1">
+                <h4 className="text-sm font-bold text-yellow-900 dark:text-yellow-100 mb-1">
+                  ⚠️ Similar Issue Found ({duplicateWarning.confidence}% match)
+                </h4>
+                <p className="text-sm text-yellow-800 dark:text-yellow-200 mb-2">
+                  {duplicateWarning.reason}
+                </p>
+                <p className="text-xs text-yellow-700 dark:text-yellow-300">
+                  Consider upvoting the existing issue instead of creating a duplicate.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
       {/* Location with Map Integration */}
       <div>
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           Location <span className="text-red-500">*</span>
         </label>
         
-        {/* Location Input */}
         <div className="flex gap-2 mb-3">
           <input
             type="text"
@@ -171,7 +300,6 @@ const CreateIssueForm = ({ onSubmit, onCancel, isSubmitting }) => {
           </button>
         </div>
 
-        {/* Map Picker */}
         {showMap && (
           <div className="animate-slide-down">
             <MapPicker
@@ -182,7 +310,6 @@ const CreateIssueForm = ({ onSubmit, onCancel, isSubmitting }) => {
           </div>
         )}
 
-        {/* Selected Location Display */}
         {formData.latitude && formData.longitude && (
           <div className="mt-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-3">
             <div className="flex items-start space-x-2">

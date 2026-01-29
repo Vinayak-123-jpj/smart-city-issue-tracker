@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import AIPriorityBadge from '../components/common/AIPriorityBadge';
 
 import { useAuth } from '../context/AuthContext';
 import { issueAPI } from '../services/api';
@@ -57,9 +58,11 @@ const AuthorityDashboard = () => {
               >
                 <h3 className="font-bold text-lg text-gray-900 dark:text-white">{issue.title}</h3>
                 <p className="text-gray-600 dark:text-gray-400 mt-2">{issue.description.substring(0, 100)}...</p>
-                <div className="flex items-center gap-4 mt-4">
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">👍 {issue.upvoteCount || 0}</span>
-                  <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                <div className="flex items-center gap-4 mt-4 flex-wrap">
+  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">👍 {issue.upvoteCount || 0}</span>
+  <AIPriorityBadge issue={issue} />
+  <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                
                     issue.status === 'Pending' 
                       ? 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200' 
                       : issue.status === 'In Progress' 

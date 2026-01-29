@@ -298,10 +298,11 @@ const CitizenDashboard = () => {
             </div>
             <div className="px-6 py-6">
               <CreateIssueForm 
-                onSubmit={handleCreateIssue} 
-                onCancel={() => setShowCreateForm(false)} 
-                isSubmitting={isSubmitting} 
-              />
+  onSubmit={handleCreateIssue} 
+  onCancel={() => setShowCreateForm(false)} 
+  isSubmitting={isSubmitting}
+  existingIssues={issues}
+/>
             </div>
           </div>
         </div>
