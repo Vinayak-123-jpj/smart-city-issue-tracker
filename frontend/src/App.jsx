@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { DarkModeProvider } from './context/DarkModeContext';
+import MapDashboard from './pages/MapDashboard';
+
 
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
@@ -75,6 +77,25 @@ function AppRoutes() {
       <Route path="/authority/analytics" element={<ProtectedRoute requiredRole="authority"><AnalyticsDashboard /></ProtectedRoute>} />
       
       <Route path="*" element={<Navigate to="/" replace />} />
+      // For Citizens
+<Route 
+  path="/citizen/map" 
+  element={
+    <ProtectedRoute requiredRole="citizen">
+      <MapDashboard />
+    </ProtectedRoute>
+  } 
+/>
+
+// For Authorities  
+<Route 
+  path="/authority/map" 
+  element={
+    <ProtectedRoute requiredRole="authority">
+      <MapDashboard />
+    </ProtectedRoute>
+  } 
+/>
     </Routes>
   );
 }

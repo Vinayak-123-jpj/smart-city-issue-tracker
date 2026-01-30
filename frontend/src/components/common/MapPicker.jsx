@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import React, { useState, useEffect, useRef } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
@@ -21,10 +21,27 @@ const customIcon = new L.Icon({
   shadowSize: [41, 41]
 });
 
+// Component to handle map clicks and flying to locations
+const MapController = ({ position, flyToPosition }) => {
+  const map = useMap();
+  
+  useEffect(() => {
+    if (flyToPosition && flyToPosition.lat && flyToPosition.lng) {
+      map.flyTo([flyToPosition.lat, flyToPosition.lng], 13, {
+        duration: 1.5
+      });
+    }
+  }, [flyToPosition, map]);
+
+  return null;
+};
+
 // Component to handle map clicks
 const LocationMarker = ({ position, setPosition, onLocationSelect }) => {
-  const map = useMapEvents({
-    click(e) {
+  const map = useMap();
+  
+  useEffect(() => {
+    map.on('click', (e) => {
       const newPos = [e.latlng.lat, e.latlng.lng];
       setPosition(newPos);
       
@@ -45,10 +62,12 @@ const LocationMarker = ({ position, setPosition, onLocationSelect }) => {
             address: `${e.latlng.lat.toFixed(6)}, ${e.latlng.lng.toFixed(6)}`
           });
         });
-      
-      map.flyTo(e.latlng, map.getZoom());
-    },
-  });
+    });
+
+    return () => {
+      map.off('click');
+    };
+  }, [map, setPosition, onLocationSelect]);
 
   return position ? (
     <Marker position={position} icon={customIcon}>
@@ -71,6 +90,7 @@ const MapPicker = ({
   showSearch = true
 }) => {
   const [position, setPosition] = useState(initialPosition);
+  const [flyToPosition, setFlyToPosition] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -80,19 +100,20 @@ const MapPicker = ({
   const getCurrentLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const newPos = [position.coords.latitude, position.coords.longitude];
+        (geoPosition) => {
+          const newPos = [geoPosition.coords.latitude, geoPosition.coords.longitude];
           setPosition(newPos);
+          setFlyToPosition({ lat: geoPosition.coords.latitude, lng: geoPosition.coords.longitude });
           
           // Get address for current location
-          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${position.coords.latitude}&lon=${position.coords.longitude}`)
+          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${geoPosition.coords.latitude}&lon=${geoPosition.coords.longitude}`)
             .then(response => response.json())
             .then(data => {
-              const address = data.display_name || `${position.coords.latitude.toFixed(6)}, ${position.coords.longitude.toFixed(6)}`;
+              const address = data.display_name || `${geoPosition.coords.latitude.toFixed(6)}, ${geoPosition.coords.longitude.toFixed(6)}`;
               setSelectedAddress(address);
               onLocationSelect({
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
+                lat: geoPosition.coords.latitude,
+                lng: geoPosition.coords.longitude,
                 address: address
               });
             });
@@ -108,8 +129,7 @@ const MapPicker = ({
   };
 
   // Search for locations using Nominatim (OpenStreetMap)
-  const handleSearch = async (e) => {
-    e.preventDefault();
+  const handleSearch = async () => {
     if (!searchQuery.trim()) return;
 
     setIsSearching(true);
@@ -119,6 +139,21 @@ const MapPicker = ({
       );
       const data = await response.json();
       setSearchResults(data);
+      
+      // AUTO-SELECT FIRST RESULT if available
+      if (data.length > 0) {
+        const firstResult = data[0];
+        const newPos = [parseFloat(firstResult.lat), parseFloat(firstResult.lon)];
+        setPosition(newPos);
+        setSelectedAddress(firstResult.display_name);
+        setFlyToPosition({ lat: parseFloat(firstResult.lat), lng: parseFloat(firstResult.lon) });
+        
+        onLocationSelect({
+          lat: parseFloat(firstResult.lat),
+          lng: parseFloat(firstResult.lon),
+          address: firstResult.display_name
+        });
+      }
     } catch (error) {
       console.error('Search error:', error);
       alert('Failed to search location. Please try again.');
@@ -131,6 +166,7 @@ const MapPicker = ({
     const newPos = [parseFloat(result.lat), parseFloat(result.lon)];
     setPosition(newPos);
     setSelectedAddress(result.display_name);
+    setFlyToPosition({ lat: parseFloat(result.lat), lng: parseFloat(result.lon) });
     onLocationSelect({
       lat: parseFloat(result.lat),
       lng: parseFloat(result.lon),
@@ -145,13 +181,20 @@ const MapPicker = ({
       {/* Search Bar */}
       {showSearch && (
         <div className="space-y-2">
-          <form onSubmit={handleSearch} className="flex gap-2">
+          <div className="flex gap-2">
             <div className="relative flex-1">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search for a location (e.g., MG Road, Bhopal)"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleSearch();
+                  }
+                }}
+                placeholder="Search for a location (e.g., Rishikesh, Uttarakhand)"
                 className="w-full px-4 py-2 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
               />
               <svg 
@@ -164,7 +207,12 @@ const MapPicker = ({
               </svg>
             </div>
             <button
-              type="submit"
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleSearch();
+              }}
               disabled={isSearching}
               className="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
@@ -172,7 +220,11 @@ const MapPicker = ({
             </button>
             <button
               type="button"
-              onClick={getCurrentLocation}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                getCurrentLocation();
+              }}
               className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center space-x-2"
               title="Use my current location"
             >
@@ -182,7 +234,7 @@ const MapPicker = ({
               </svg>
               <span className="hidden sm:inline">Current Location</span>
             </button>
-          </form>
+          </div>
 
           {/* Search Results */}
           {searchResults.length > 0 && (
@@ -190,7 +242,12 @@ const MapPicker = ({
               {searchResults.map((result, index) => (
                 <button
                   key={index}
-                  onClick={() => selectSearchResult(result)}
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    selectSearchResult(result);
+                  }}
                   className="w-full text-left px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors border-b border-gray-200 dark:border-gray-700 last:border-b-0"
                 >
                   <div className="flex items-start space-x-3">
@@ -201,6 +258,11 @@ const MapPicker = ({
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
                         {result.display_name}
+                        {index === 0 && (
+                          <span className="ml-2 px-2 py-0.5 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">
+                            Auto-selected
+                          </span>
+                        )}
                       </p>
                       <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                         {result.type}
@@ -250,6 +312,7 @@ const MapPicker = ({
               onLocationSelect(location);
             }}
           />
+          <MapController position={position} flyToPosition={flyToPosition} />
         </MapContainer>
 
         {/* Instructions Overlay */}

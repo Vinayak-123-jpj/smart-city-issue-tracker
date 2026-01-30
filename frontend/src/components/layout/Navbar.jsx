@@ -79,6 +79,14 @@ const Navbar = ({ user, onLogout }) => {
                     <span>Dashboard</span>
                   </span>
                 </NavLink>
+                  <NavLink to="/citizen/map">
+      <span className="flex items-center space-x-1.5">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+        </svg>
+        <span>Map View</span>
+      </span>
+    </NavLink>
                 <NavLink to="/citizen/my-issues">
                   <span className="flex items-center space-x-1.5">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -91,26 +99,38 @@ const Navbar = ({ user, onLogout }) => {
             )}
             
             {isAuthority && (
-              <>
-                <NavLink to="/authority/dashboard">
-                  <span className="flex items-center space-x-1.5">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                    <span>Dashboard</span>
-                  </span>
-                </NavLink>
-                <NavLink to="/authority/analytics">
-                  <span className="flex items-center space-x-1.5">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                    <span>Analytics</span>
-                  </span>
-                </NavLink>
-              </>
-            )}
-          </div>
+  <>
+    <NavLink to="/authority/dashboard">
+      <span className="flex items-center space-x-1.5">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+        <span>Dashboard</span>
+      </span>
+    </NavLink>
+    
+    {/* ADD THIS NEW MAP LINK */}
+    <NavLink to="/authority/map">
+      <span className="flex items-center space-x-1.5">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+        </svg>
+        <span>Map View</span>
+      </span>
+    </NavLink>
+    
+    <NavLink to="/authority/analytics">
+      <span className="flex items-center space-x-1.5">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+        <span>Analytics</span>
+      </span>
+    </NavLink>
+  </>
+)}
+</div>
+
 
           {/* Right Section */}
           <div className="hidden md:flex items-center space-x-3">
@@ -236,19 +256,20 @@ const Navbar = ({ user, onLogout }) => {
           <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700 animate-slide-down">
             <div className="space-y-1">
               {isCitizen && (
-                <>
-                  <NavLink to="/citizen/dashboard" mobile>Dashboard</NavLink>
-                  <NavLink to="/citizen/my-issues" mobile>My Issues</NavLink>
-                </>
-              )}
-              
-              {isAuthority && (
-                <>
-                  <NavLink to="/authority/dashboard" mobile>Dashboard</NavLink>
-                  <NavLink to="/authority/analytics" mobile>Analytics</NavLink>
-                </>
-              )}
+  <>
+    <NavLink to="/citizen/dashboard" mobile>Dashboard</NavLink>
+    <NavLink to="/citizen/map" mobile>Map View</NavLink>  {/* ADD THIS */}
+    <NavLink to="/citizen/my-issues" mobile>My Issues</NavLink>
+  </>
+)}
 
+{isAuthority && (
+  <>
+    <NavLink to="/authority/dashboard" mobile>Dashboard</NavLink>
+    <NavLink to="/authority/map" mobile>Map View</NavLink>  {/* ADD THIS */}
+    <NavLink to="/authority/analytics" mobile>Analytics</NavLink>
+  </>
+)}
               <button
                 onClick={toggleDarkMode}
                 className="w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg flex items-center space-x-3"
