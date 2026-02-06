@@ -1,38 +1,40 @@
-import React from 'react';
-import StatusBadge from '../common/StatusBadge';
-import CategoryBadge from '../common/CategoryBadge';
-import AIPriorityBadge from '../common/AIPriorityBadge';
+import React from "react";
+import StatusBadge from "../common/StatusBadge";
+import CategoryBadge from "../common/CategoryBadge";
+import AIPriorityBadge from "../common/AIPriorityBadge";
 
 const EnhancedIssueCard = ({ issue, onClick }) => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'short', 
-      day: 'numeric' 
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
   };
 
   const getStatusGradient = (status) => {
     const gradients = {
-      'Pending': 'from-yellow-400/20 to-orange-400/20',
-      'In Progress': 'from-blue-400/20 to-indigo-400/20',
-      'Resolved': 'from-green-400/20 to-emerald-400/20'
+      Pending: "from-yellow-400/20 to-orange-400/20",
+      "In Progress": "from-blue-400/20 to-indigo-400/20",
+      Resolved: "from-green-400/20 to-emerald-400/20",
     };
-    return gradients[status] || gradients['Pending'];
+    return gradients[status] || gradients["Pending"];
   };
 
   return (
     <div
       onClick={onClick}
-      className="group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer border border-gray-200/50 dark:border-gray-700/50 overflow-hidden transform hover:-translate-y-2"
+      className="group relative bg-white dark:bg-gray-800 backdrop-blur-xl rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer border border-gray-200 dark:border-gray-700 overflow-hidden transform hover:-translate-y-2 flex flex-col min-h-[450px]"
     >
       {/* Gradient Overlay on Hover */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${getStatusGradient(issue.status)} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-      
-      {/* Image Section */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${getStatusGradient(issue.status)} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
+      />
+
+      {/* Image Section - Only show if image exists */}
       {issue.imageUrl && (
-        <div className="relative w-full h-56 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 overflow-hidden">
+        <div className="relative w-full h-56 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 overflow-hidden flex-shrink-0">
           <img
             src={`http://localhost:5000${issue.imageUrl}`}
             alt={issue.title}
@@ -40,7 +42,7 @@ const EnhancedIssueCard = ({ issue, onClick }) => {
           />
           {/* Image Overlay Gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-          
+
           {/* Floating Status Badge on Image */}
           <div className="absolute top-4 right-4">
             <StatusBadge status={issue.status} />
@@ -49,7 +51,7 @@ const EnhancedIssueCard = ({ issue, onClick }) => {
       )}
 
       {/* Content Section */}
-      <div className="relative p-6 space-y-4">
+      <div className="relative p-6 space-y-4 flex-1 flex flex-col">
         {/* Header with badges */}
         <div className="flex items-center justify-between flex-wrap gap-3">
           <CategoryBadge category={issue.category} />
@@ -65,48 +67,94 @@ const EnhancedIssueCard = ({ issue, onClick }) => {
         </h3>
 
         {/* Description */}
-        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed line-clamp-3">
+        <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed line-clamp-3">
           {issue.description}
         </p>
 
         {/* Location */}
         {issue.location && (
-          <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 bg-gray-100/80 dark:bg-gray-700/50 rounded-xl px-3 py-2">
-            <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          <div className="flex items-center text-sm text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-xl px-3 py-2">
+            <svg
+              className="w-4 h-4 mr-2 text-blue-500 dark:text-blue-400 flex-shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+              />
             </svg>
             <span className="line-clamp-1 font-medium">{issue.location}</span>
           </div>
         )}
 
+        {/* Spacer to push footer to bottom */}
+        <div className="flex-1"></div>
+
         {/* Footer Stats */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
+        <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700 mt-auto">
           <div className="flex items-center space-x-6">
             {/* Upvotes */}
             <div className="flex items-center space-x-2 group/upvote">
               <div className="relative">
                 <div className="absolute inset-0 bg-blue-500 rounded-full blur-md opacity-0 group-hover/upvote:opacity-50 transition-opacity"></div>
-                <svg className="relative w-6 h-6 text-blue-600 dark:text-blue-400 transform group-hover/upvote:scale-125 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <svg
+                  className="relative w-6 h-6 text-blue-600 dark:text-blue-400 transform group-hover/upvote:scale-125 transition-transform"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path d="M12 4l-8 8h5v8h6v-8h5z" />
                 </svg>
               </div>
-              <span className="font-bold text-blue-600 dark:text-blue-400 text-lg">{issue.upvoteCount || 0}</span>
+              <span className="font-bold text-blue-600 dark:text-blue-400 text-lg">
+                {issue.upvoteCount || 0}
+              </span>
             </div>
 
             {/* Comments */}
             <div className="flex items-center space-x-2 group/comment">
-              <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 group-hover/comment:text-purple-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              <svg
+                className="w-5 h-5 text-gray-500 dark:text-gray-400 group-hover/comment:text-purple-500 dark:group-hover/comment:text-purple-400 transition-colors"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                />
               </svg>
-              <span className="text-gray-600 dark:text-gray-400 font-semibold">{issue.commentCount || 0}</span>
+              <span className="text-gray-600 dark:text-gray-300 font-semibold">
+                {issue.commentCount || 0}
+              </span>
             </div>
           </div>
 
           {/* Date */}
-          <div className="flex items-center text-xs text-gray-400 dark:text-gray-500 font-medium">
-            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 font-medium">
+            <svg
+              className="w-4 h-4 mr-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
             </svg>
             {formatDate(issue.createdAt)}
           </div>
@@ -114,24 +162,38 @@ const EnhancedIssueCard = ({ issue, onClick }) => {
 
         {/* Reporter info */}
         {issue.reportedBy && (
-          <div className="flex items-center text-xs pt-3 border-t border-gray-200/50 dark:border-gray-700/50">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center mr-3 shadow-lg transform group-hover:scale-110 transition-transform">
+          <div className="flex items-center text-xs pt-3 border-t border-gray-200 dark:border-gray-700">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center mr-3 shadow-lg transform group-hover:scale-110 transition-transform flex-shrink-0">
               <span className="text-sm font-bold text-white">
                 {issue.reportedBy.name?.charAt(0).toUpperCase()}
               </span>
             </div>
-            <div>
-              <span className="text-gray-500 dark:text-gray-400">Reported by </span>
-              <span className="font-semibold text-gray-700 dark:text-gray-300">{issue.reportedBy.name}</span>
+            <div className="min-w-0 flex-1">
+              <span className="text-gray-500 dark:text-gray-400">
+                Reported by{" "}
+              </span>
+              <span className="font-semibold text-gray-700 dark:text-gray-200">
+                {issue.reportedBy.name}
+              </span>
             </div>
           </div>
         )}
       </div>
 
       {/* Hover Arrow Indicator */}
-      <div className="absolute top-1/2 right-6 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:right-4 transition-all duration-300">
-        <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+      <div className="absolute top-1/2 right-6 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:right-4 transition-all duration-300 pointer-events-none">
+        <svg
+          className="w-8 h-8 text-blue-600 dark:text-blue-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={3}
+            d="M13 7l5 5m0 0l-5 5m5-5H6"
+          />
         </svg>
       </div>
     </div>
