@@ -12,6 +12,9 @@ import StatusBadge from "../components/common/StatusBadge";
 import CategoryBadge from "../components/common/CategoryBadge";
 import EmptyState from "../components/common/EmptyState";
 import ImageZoom from "../components/common/ImageZoom";
+import AIChatbot from "../components/common/AIChatbot";
+
+
 import {
   IssueCardSkeleton,
   StatCardSkeleton,
@@ -136,7 +139,7 @@ const CitizenDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Navbar user={user} onLogout={logout} />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -547,6 +550,8 @@ const CitizenDashboard = () => {
           </div>
         </div>
       )}
+      {/* AI Chatbot - Floating Assistant */}
+      <AIChatbot user={user} existingIssues={issues} />
     </div>
   );
 };
