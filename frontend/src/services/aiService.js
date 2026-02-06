@@ -1,63 +1,53 @@
 // AI Service for Smart City Tracker
-// Handles all AI-powered features using Claude API
+// Handles all AI-powered features through backend API
 
-const AI_API_URL = "https://api.anthropic.com/v1/messages";
-const AI_MODEL = "claude-sonnet-4-20250514";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 /**
  * Check for duplicate issues
  */
-export const checkDuplicates = async (title, description, location, existingIssues) => {
+export const checkDuplicates = async (
+  title,
+  description,
+  location,
+  existingIssues,
+) => {
   try {
     const relevantIssues = existingIssues
-      .filter(issue => issue.status !== 'Resolved')
+      .filter((issue) => issue.status !== "Resolved")
       .slice(0, 20);
 
     if (relevantIssues.length === 0) {
-      return { isDuplicate: false, matchedIssueId: null, confidence: 0, reason: '' };
+      return {
+        isDuplicate: false,
+        matchedIssueId: null,
+        confidence: 0,
+        reason: "No existing issues to compare",
+      };
     }
 
-    const response = await fetch(AI_API_URL, {
+    const response = await fetch(`${API_URL}/ai/check-duplicates`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
       body: JSON.stringify({
-        model: AI_MODEL,
-        max_tokens: 1000,
-        messages: [{
-          role: "user",
-          content: `Analyze if this new issue is a duplicate of any existing issues.
-
-NEW ISSUE:
-Title: ${title}
-Description: ${description}
-Location: ${location || 'Not specified'}
-
-EXISTING ISSUES:
-${relevantIssues.map((issue, i) => `
-${i + 1}. ID: ${issue._id}
-   Title: ${issue.title}
-   Description: ${issue.description}
-   Location: ${issue.location || 'Not specified'}
-   Status: ${issue.status}
-`).join('\n')}
-
-Respond ONLY with valid JSON (no markdown, no backticks):
-{
-  "isDuplicate": true or false,
-  "matchedIssueId": "issue id or null",
-  "confidence": number from 0-100,
-  "reason": "brief explanation"
-}`
-        }]
-      })
+        title,
+        description,
+        location,
+        existingIssues: relevantIssues,
+      }),
     });
 
-    const data = await response.json();
-    const jsonText = data.content[0].text.replace(/```json|```/g, '').trim();
-    return JSON.parse(jsonText);
+    if (!response.ok) {
+      throw new Error("Failed to check for duplicates");
+    }
+
+    return await response.json();
   } catch (error) {
-    console.error('Duplicate check error:', error);
-    return { isDuplicate: false, matchedIssueId: null, confidence: 0, reason: 'Error checking duplicates' };
+    console.error("Duplicate check error:", error);
+    throw error;
   }
 };
 
@@ -66,82 +56,68 @@ Respond ONLY with valid JSON (no markdown, no backticks):
  */
 export const improveDescription = async (currentText, title, category) => {
   try {
-    const response = await fetch(AI_API_URL, {
+    const response = await fetch(`${API_URL}/ai/improve-description`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
       body: JSON.stringify({
-        model: AI_MODEL,
-        max_tokens: 1000,
-        messages: [{
-          role: "user",
-          content: `You are helping a citizen write a better civic issue report.
-
-Title: ${title}
-Category: ${category}
-Current Description: ${currentText}
-
-Improve this description to be:
-- Clear and specific
-- Include relevant details (what, where, when, impact)
-- Professional but concise (3-5 sentences)
-- Actionable for authorities
-
-Return ONLY the improved description text, nothing else.`
-        }]
-      })
+        currentText,
+        title,
+        category,
+      }),
     });
 
+    if (!response.ok) {
+      throw new Error("Failed to improve description");
+    }
+
     const data = await response.json();
-    return data.content[0].text.trim();
+    return data.improvedText;
   } catch (error) {
-    console.error('Description improvement error:', error);
-    return currentText;
+    console.error("Description improvement error:", error);
+    throw error;
   }
 };
 
 /**
  * Analyze issue sentiment and priority
  */
-export const analyzeIssuePriority = async (title, description, upvoteCount = 0, category) => {
+export const analyzeIssuePriority = async (
+  title,
+  description,
+  upvoteCount = 0,
+  category,
+) => {
   try {
-    const response = await fetch(AI_API_URL, {
+    const response = await fetch(`${API_URL}/ai/analyze-priority`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
       body: JSON.stringify({
-        model: AI_MODEL,
-        max_tokens: 1000,
-        messages: [{
-          role: "user",
-          content: `Analyze this civic issue for priority and sentiment:
-
-Title: ${title}
-Description: ${description}
-Category: ${category}
-Community Upvotes: ${upvoteCount}
-
-Respond ONLY with valid JSON (no markdown, no backticks):
-{
-  "urgencyScore": number from 1-10,
-  "sentiment": "frustrated" or "concerned" or "neutral" or "informative",
-  "priority": "low" or "medium" or "high" or "critical",
-  "suggestedAction": "brief recommendation for authorities",
-  "estimatedImpact": "description of how many people might be affected"
-}`
-        }]
-      })
+        title,
+        description,
+        upvoteCount,
+        category,
+      }),
     });
 
-    const data = await response.json();
-    const jsonText = data.content[0].text.replace(/```json|```/g, '').trim();
-    return JSON.parse(jsonText);
+    if (!response.ok) {
+      throw new Error("Failed to analyze priority");
+    }
+
+    return await response.json();
   } catch (error) {
-    console.error('Priority analysis error:', error);
+    console.error("Priority analysis error:", error);
     return {
       urgencyScore: 5,
-      sentiment: 'neutral',
-      priority: 'medium',
-      suggestedAction: 'Review and assign to appropriate team',
-      estimatedImpact: 'Unknown'
+      sentiment: "neutral",
+      priority: "medium",
+      suggestedAction: "Review and assign to appropriate team",
+      estimatedImpact: "Unknown",
     };
   }
 };
@@ -151,32 +127,26 @@ Respond ONLY with valid JSON (no markdown, no backticks):
  */
 export const suggestTitle = async (partialTitle, category) => {
   try {
-    const response = await fetch(AI_API_URL, {
+    const response = await fetch(`${API_URL}/ai/suggest-title`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
       body: JSON.stringify({
-        model: AI_MODEL,
-        max_tokens: 1000,
-        messages: [{
-          role: "user",
-          content: `Generate 3 clear, concise issue titles for a ${category} problem based on: "${partialTitle}"
-
-Requirements:
-- Each title should be 5-10 words
-- Clear and specific
-- Action-oriented
-
-Return ONLY a JSON array of 3 strings (no markdown, no backticks):
-["title 1", "title 2", "title 3"]`
-        }]
-      })
+        partialTitle,
+        category,
+      }),
     });
 
+    if (!response.ok) {
+      throw new Error("Failed to get title suggestions");
+    }
+
     const data = await response.json();
-    const jsonText = data.content[0].text.replace(/```json|```/g, '').trim();
-    return JSON.parse(jsonText);
+    return data.suggestions;
   } catch (error) {
-    console.error('Title suggestion error:', error);
+    console.error("Title suggestion error:", error);
     return [];
   }
 };
