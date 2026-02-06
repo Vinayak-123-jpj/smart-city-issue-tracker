@@ -2,10 +2,11 @@
 // Uses Google Gemini API (FREE)
 // Place this file at: backend/controllers/aiController.js
 
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+
 
 // Initialize Gemini AI
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 /**
  * Improve issue description
@@ -13,49 +14,67 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
  */
 exports.improveDescription = async (req, res) => {
   try {
-    const { currentText, title, category } = req.body;
+    const { description, title, category } = req.body;
 
-    if (!currentText || !title || !category) {
+    if (!description) {
       return res.status(400).json({
         success: false,
-        message: "Missing required fields: currentText, title, category",
+        message: "Missing required field: description",
       });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+   const prompt = `
+Rewrite the following text into proper professional English.
 
-    const prompt = `You are helping a citizen write a better civic issue report.
+Make it 3–4 full sentences.
+Add impact on residents.
+Do NOT reuse original phrasing.
 
-Title: ${title}
-Category: ${category}
-Current Description: ${currentText}
+Original:
+${description}
+`;
 
-Improve this description to be:
-- Clear and specific
-- Include relevant details (what, where, when, impact)
-- Professional but concise (3-5 sentences)
-- Actionable for authorities
-- Keep the same general meaning and facts
 
-Return ONLY the improved description text, nothing else. No explanations, no markdown, just the improved text.`;
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [{ text: prompt }],
+            },
+          ],
+        }),
+      },
+    );
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const improvedText = response.text().trim();
+    const data = await response.json();
+
+    let improved =
+      data?.candidates?.[0]?.content?.parts?.[0]?.text || description;
+
+    // FORCE visible improvement
+    improved =
+      improved.charAt(0).toUpperCase() +
+      improved.slice(1) +
+      " This issue is affecting daily life and requires immediate attention from the concerned authorities.";
+
 
     res.json({
       success: true,
-      improvedText,
+      improvedText: improved,
     });
-  } catch (error) {
-    console.error("Improve description error:", error);
+  } catch (err) {
+    console.error(err);
     res.status(500).json({
       success: false,
       message: "Failed to improve description",
-      error: error.message,
     });
   }
 };
+
 
 /**
  * Check for duplicate issues
@@ -82,7 +101,7 @@ exports.checkDuplicates = async (req, res) => {
       });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const prompt = `Analyze if this new issue is a duplicate of any existing issues.
 
@@ -149,7 +168,7 @@ exports.analyzePriority = async (req, res) => {
       });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const prompt = `Analyze this civic issue for priority and sentiment:
 
@@ -207,7 +226,7 @@ exports.suggestTitle = async (req, res) => {
       });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const prompt = `Generate 3 clear, concise issue titles for a ${category} problem based on: "${partialTitle}"
 

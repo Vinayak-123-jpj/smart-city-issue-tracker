@@ -53,9 +53,16 @@ export const checkDuplicates = async (
 
 /**
  * Get smart suggestions for description
+ * FIXED: Changed currentText → description to match backend
  */
 export const improveDescription = async (currentText, title, category) => {
   try {
+    console.log("📤 Sending to backend:", {
+      description: currentText,
+      title,
+      category,
+    });
+
     const response = await fetch(`${API_URL}/ai/improve-description`, {
       method: "POST",
       headers: {
@@ -63,17 +70,20 @@ export const improveDescription = async (currentText, title, category) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({
-        currentText,
+        description: currentText, // ← FIXED: was "currentText", now "description"
         title,
         category,
       }),
     });
 
     if (!response.ok) {
-      throw new Error("Failed to improve description");
+      const errorData = await response.json().catch(() => ({}));
+      console.error("❌ Backend error:", errorData);
+      throw new Error(errorData.message || "Failed to improve description");
     }
 
     const data = await response.json();
+    console.log("✅ Received from backend:", data);
     return data.improvedText;
   } catch (error) {
     console.error("Description improvement error:", error);
