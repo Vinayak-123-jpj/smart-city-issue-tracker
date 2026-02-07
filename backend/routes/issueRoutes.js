@@ -6,29 +6,15 @@ const Issue = require('../models/Issue');
 const { protect } = require('../middleware/authMiddleware');
 const { checkRole } = require('../middleware/roleMiddleware');
 
-// Multer configuration for image upload
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
-  }
-});
+const { storage } = require("../config/cloudinary");
 
-const upload = multer({ 
-  storage,
+
+// Multer configuration for image upload
+
+
+const upload = multer({
+  storage, // ← Uses Cloudinary now
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
-  fileFilter: (req, file, cb) => {
-    const filetypes = /jpeg|jpg|png|gif|webp/;
-    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-    const mimetype = filetypes.test(file.mimetype);
-    
-    if (mimetype && extname) {
-      return cb(null, true);
-    }
-    cb(new Error('Only images are allowed (jpeg, jpg, png, gif, webp)'));
-  }
 });
 
 // Helper function to calculate distance between two coordinates (Haversine formula)

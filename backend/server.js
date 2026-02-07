@@ -16,18 +16,14 @@ app.use(
   }),
 );
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files (uploaded images)
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+// Remove or comment out this line since we're using Cloudinary now:
+// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // MongoDB Connection
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB Connected"))
   .catch((err) => {
     console.error("❌ MongoDB Connection Error:", err.message);
@@ -37,12 +33,12 @@ mongoose
 // Import Routes
 const authRoutes = require("./routes/authRoutes");
 const issueRoutes = require("./routes/issueRoutes");
-const aiRoutes = require("./routes/aiRoutes"); // ← NEW: Import AI routes
+const aiRoutes = require("./routes/aiRoutes");
 
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/issues", issueRoutes);
-app.use("/api/ai", aiRoutes); // ← NEW: Register AI routes
+app.use("/api/ai", aiRoutes);
 
 // Health Check Route
 app.get("/api/health", (req, res) => {
