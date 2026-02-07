@@ -1,10 +1,7 @@
 // AI Controller for Smart City Tracker
-// Uses Google Gemini API (FREE)
+// Uses Google Gemini API (FREE) via REST API
 // Place this file at: backend/controllers/aiController.js
 
-
-
-// Initialize Gemini AI
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
@@ -23,10 +20,10 @@ exports.improveDescription = async (req, res) => {
       });
     }
 
-   const prompt = `
+    const prompt = `
 Rewrite the following text into proper professional English.
 
-Make it 3–4 full sentences.
+Make it 3-4 full sentences.
 Add impact on residents.
 Do NOT reuse original phrasing.
 
@@ -34,9 +31,8 @@ Original:
 ${description}
 `;
 
-
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -61,7 +57,6 @@ ${description}
       improved.slice(1) +
       " This issue is affecting daily life and requires immediate attention from the concerned authorities.";
 
-
     res.json({
       success: true,
       improvedText: improved,
@@ -74,7 +69,6 @@ ${description}
     });
   }
 };
-
 
 /**
  * Check for duplicate issues
@@ -100,8 +94,6 @@ exports.checkDuplicates = async (req, res) => {
         reason: "No existing issues to compare",
       });
     }
-
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const prompt = `Analyze if this new issue is a duplicate of any existing issues.
 
@@ -131,13 +123,25 @@ Respond ONLY with valid JSON (no markdown, no backticks):
   "reason": "brief explanation"
 }`;
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const jsonText = response
-      .text()
-      .replace(/```json|```/g, "")
-      .trim();
-    const duplicateResult = JSON.parse(jsonText);
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [{ text: prompt }],
+            },
+          ],
+        }),
+      },
+    );
+
+    const data = await response.json();
+    const jsonText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
+    const cleanedText = jsonText.replace(/```json|```/g, "").trim();
+    const duplicateResult = JSON.parse(cleanedText);
 
     res.json({
       success: true,
@@ -154,12 +158,14 @@ Respond ONLY with valid JSON (no markdown, no backticks):
 };
 
 /**
- * Analyze issue priority
+ * Analyze issue priority - FINAL WORKING VERSION
  * POST /api/ai/analyze-priority
  */
 exports.analyzePriority = async (req, res) => {
   try {
     const { title, description, upvoteCount = 0, category } = req.body;
+
+    console.log("🔍 Analyzing priority for:", { title, category, upvoteCount });
 
     if (!title || !description || !category) {
       return res.status(400).json({
@@ -167,8 +173,6 @@ exports.analyzePriority = async (req, res) => {
         message: "Missing required fields: title, description, category",
       });
     }
-
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const prompt = `Analyze this civic issue for priority and sentiment:
 
@@ -186,20 +190,46 @@ Respond ONLY with valid JSON (no markdown, no backticks):
   "estimatedImpact": "description of how many people might be affected"
 }`;
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const jsonText = response
-      .text()
-      .replace(/```json|```/g, "")
-      .trim();
-    const priorityResult = JSON.parse(jsonText);
+    console.log("📤 Sending request to Gemini API...");
+
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [{ text: prompt }],
+            },
+          ],
+        }),
+      },
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("❌ Gemini API Error:", errorText);
+      throw new Error(`Gemini API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("✅ Gemini API Response:", JSON.stringify(data, null, 2));
+
+    const jsonText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
+    console.log("📄 Raw AI text:", jsonText);
+
+    const cleanedText = jsonText.replace(/```json|```/g, "").trim();
+    const priorityResult = JSON.parse(cleanedText);
+
+    console.log("✅ Parsed result:", priorityResult);
 
     res.json({
       success: true,
       ...priorityResult,
     });
   } catch (error) {
-    console.error("Analyze priority error:", error);
+    console.error("❌ Analyze priority error:", error);
     res.json({
       success: true,
       urgencyScore: 5,
@@ -226,8 +256,6 @@ exports.suggestTitle = async (req, res) => {
       });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
     const prompt = `Generate 3 clear, concise issue titles for a ${category} problem based on: "${partialTitle}"
 
 Requirements:
@@ -238,13 +266,25 @@ Requirements:
 Return ONLY a JSON array of 3 strings (no markdown, no backticks):
 ["title 1", "title 2", "title 3"]`;
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const jsonText = response
-      .text()
-      .replace(/```json|```/g, "")
-      .trim();
-    const suggestions = JSON.parse(jsonText);
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [{ text: prompt }],
+            },
+          ],
+        }),
+      },
+    );
+
+    const data = await response.json();
+    const jsonText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "[]";
+    const cleanedText = jsonText.replace(/```json|```/g, "").trim();
+    const suggestions = JSON.parse(cleanedText);
 
     res.json({
       success: true,

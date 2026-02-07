@@ -93,6 +93,7 @@ export const improveDescription = async (currentText, title, category) => {
 
 /**
  * Analyze issue sentiment and priority
+ * FIXED: Extract data properly and add detailed logging
  */
 export const analyzeIssuePriority = async (
   title,
@@ -101,6 +102,8 @@ export const analyzeIssuePriority = async (
   category,
 ) => {
   try {
+    console.log("🔍 Analyzing priority for:", { title, category, upvoteCount });
+
     const response = await fetch(`${API_URL}/ai/analyze-priority`, {
       method: "POST",
       headers: {
@@ -116,12 +119,23 @@ export const analyzeIssuePriority = async (
     });
 
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error("❌ API Error Response:", errorText);
       throw new Error("Failed to analyze priority");
     }
 
-    return await response.json();
+    const data = await response.json();
+    console.log("✅ Raw AI Analysis Response:", data);
+
+    // Extract the actual data (remove "success" wrapper if present)
+    const { success, ...analysisData } = data;
+    console.log("✅ Extracted Analysis Data:", analysisData);
+
+    return analysisData;
   } catch (error) {
-    console.error("Priority analysis error:", error);
+    console.error("❌ Priority analysis error:", error);
+    console.error("Returning fallback data due to error");
+
     return {
       urgencyScore: 5,
       sentiment: "neutral",
