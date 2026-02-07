@@ -150,12 +150,42 @@ const EnhancedAnalyticsDashboard = () => {
     setTrendData(trend);
   };
 
-  const exportReport = () => {
-    toast.success('Report exported successfully! 📊', {
-      icon: '📥',
-      duration: 3000,
-    });
+  const exportReport = async () => {
+    const loadingToast = toast.loading("Generating report... 📊");
+
+    try {
+      const { exportToExcel } = await import("../utils/exportUtils");
+
+      const exportData = {
+        stats,
+        issues,
+        categoryBreakdown: stats.categoryBreakdown,
+        priorityDistribution: stats.priorityDistribution,
+        trendData,
+      };
+
+      const result = exportToExcel(exportData, "civic_issues_analytics");
+
+      if (result.success) {
+        toast.success(
+          `Report exported successfully!\n📁 File: ${result.filename}`,
+          {
+            id: loadingToast,
+            duration: 5000,
+          },
+        );
+      } else {
+        throw new Error(result.error);
+      }
+    } catch (error) {
+      console.error("Export error:", error);
+      toast.error(`❌ Failed to export report: ${error.message}`, {
+        id: loadingToast,
+        duration: 4000,
+      });
+    }
   };
+
 
   if (loading) {
     return (

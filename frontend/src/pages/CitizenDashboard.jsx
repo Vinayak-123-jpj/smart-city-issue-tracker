@@ -310,7 +310,7 @@ const CitizenDashboard = () => {
 
         {/* Loading State */}
         {loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <IssueCardSkeleton key={i} />
             ))}
@@ -374,11 +374,11 @@ const CitizenDashboard = () => {
 
         {/* Issues Grid */}
         {!loading && !error && filteredIssues.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
             {filteredIssues.map((issue, index) => (
               <div
                 key={issue._id}
-                className="relative card-enter"
+                className="relative card-enter h-full"
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
                 <IssueCard

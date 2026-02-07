@@ -25,7 +25,8 @@ const EnhancedIssueCard = ({ issue, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className="group relative bg-white dark:bg-gray-800 backdrop-blur-xl rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer border border-gray-200 dark:border-gray-700 overflow-hidden transform hover:-translate-y-2 flex flex-col min-h-[450px]"
+      className="group relative bg-white dark:bg-gray-800 backdrop-blur-xl rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer border border-gray-200 dark:border-gray-700 overflow-hidden transform hover:-translate-y-2 flex flex-col h-full min-h-[450px]
+"
     >
       {/* Gradient Overlay on Hover */}
       <div
