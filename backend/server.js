@@ -13,6 +13,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
+      "https://smart-city-issue-tracker.vercel.app",
       "https://frontend-kappa-coral-93.vercel.app",
     ],
     credentials: true,
