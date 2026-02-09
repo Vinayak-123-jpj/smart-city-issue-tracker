@@ -73,27 +73,30 @@ exports.getIssue = async (req, res) => {
 // @route   POST /api/issues
 exports.createIssue = async (req, res) => {
   try {
-    // Add user to req.body
-    req.body.createdBy = req.user.id;
+    const issueData = {
+      ...req.body,
+      createdBy: req.user.id,
+      imageUrl: req.file ? req.file.path : null, // ✅ Cloudinary URL
+    };
 
-    const issue = await Issue.create(req.body);
+    const issue = await Issue.create(issueData);
 
-    // Populate user data
-    await issue.populate('createdBy', 'name email role');
+    await issue.populate("createdBy", "name email role");
 
     res.status(201).json({
       success: true,
-      message: 'Issue created successfully',
+      message: "Issue created successfully",
       data: issue,
     });
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: 'Validation Error',
+      message: "Validation Error",
       error: error.message,
     });
   }
 };
+
 
 // @desc    Update issue status (Authority only)
 // @route   PUT /api/issues/:id
