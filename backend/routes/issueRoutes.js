@@ -212,7 +212,7 @@ router.post('/', protect, upload.single('image'), async (req, res) => {
       category,
       location,
       reportedBy: req.user._id,
-      imageUrl: req.file ? `/uploads/${req.file.filename}` : null
+      imageUrl: req.file ? req.file.path : null,
     };
 
     // Add coordinates if provided
@@ -342,31 +342,34 @@ router.put('/:id/upvote', protect, async (req, res) => {
 router.put('/:id/completion-image', protect, checkRole('authority'), upload.single('image'), async (req, res) => {
   try {
     const issue = await Issue.findById(req.params.id);
-    
+
     if (!issue) {
       return res.status(404).json({
         success: false,
-        message: 'Issue not found'
+        message: "Issue not found",
       });
     }
 
     if (!req.file) {
       return res.status(400).json({
         success: false,
-        message: 'Please upload an image'
+        message: "Please upload an image",
       });
     }
 
-    issue.completionImageUrl = `/uploads/${req.file.filename}`;
+    issue.completionImageUrl = req.file.path; // ✅ Cloudinary URL
+
     await issue.save();
 
-    const populatedIssue = await Issue.findById(issue._id)
-      .populate('reportedBy', 'name email');
+    const populatedIssue = await Issue.findById(issue._id).populate(
+      "reportedBy",
+      "name email",
+    );
 
     res.json({
       success: true,
-      message: 'Completion image uploaded successfully',
-      data: populatedIssue
+      message: "Completion image uploaded successfully",
+      data: populatedIssue,
     });
   } catch (error) {
     console.error('Upload completion image error:', error);
