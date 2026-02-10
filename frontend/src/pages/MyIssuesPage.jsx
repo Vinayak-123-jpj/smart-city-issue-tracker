@@ -110,43 +110,77 @@ const MyIssuesPage = () => {
         <div className="mb-8 animate-slide-down">
           <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
             <span>Home</span>
-            <svg className="w-4 h-4 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <svg
+              className="w-4 h-4 mx-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
             </svg>
-            <span className="text-primary-600 dark:text-primary-400 font-medium">My Issues</span>
+            <span className="text-primary-600 dark:text-primary-400 font-medium">
+              My Issues
+            </span>
           </div>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-4xl font-bold text-gray-900 dark:text-white bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-blue-600">
                 My Reported Issues
               </h2>
-              <p className="mt-2 text-gray-600 dark:text-gray-400">Track and manage your civic contributions</p>
+              <p className="mt-2 text-gray-600 dark:text-gray-400">
+                Track and manage your civic contributions
+              </p>
             </div>
-            
+
             {/* View Mode Toggle */}
             <div className="mt-4 sm:mt-0 flex items-center space-x-2 bg-white dark:bg-gray-800 rounded-xl p-1 shadow-md">
               <button
-                onClick={() => setViewMode('grid')}
+                onClick={() => setViewMode("grid")}
                 className={`px-4 py-2 rounded-lg transition-all ${
-                  viewMode === 'grid'
-                    ? 'bg-primary-600 text-white shadow-lg'
-                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  viewMode === "grid"
+                    ? "bg-primary-600 text-white shadow-lg"
+                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
                 }`}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                  />
                 </svg>
               </button>
               <button
-                onClick={() => setViewMode('list')}
+                onClick={() => setViewMode("list")}
                 className={`px-4 py-2 rounded-lg transition-all ${
-                  viewMode === 'list'
-                    ? 'bg-primary-600 text-white shadow-lg'
-                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  viewMode === "list"
+                    ? "bg-primary-600 text-white shadow-lg"
+                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
                 }`}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               </button>
             </div>
@@ -159,8 +193,12 @@ const MyIssuesPage = () => {
             <div className="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 hover-lift animate-fade-in">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1">Total Issues</p>
-                  <p className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">{stats.total}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1">
+                    Total Issues
+                  </p>
+                  <p className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+                    {stats.total}
+                  </p>
                 </div>
                 <div className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-xl flex items-center justify-center">
                   <span className="text-2xl">📝</span>
@@ -168,11 +206,18 @@ const MyIssuesPage = () => {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg border border-yellow-100 dark:border-yellow-900/50 hover-lift animate-fade-in" style={{ animationDelay: '0.05s' }}>
+            <div
+              className="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg border border-yellow-100 dark:border-yellow-900/50 hover-lift animate-fade-in"
+              style={{ animationDelay: "0.05s" }}
+            >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1">Pending</p>
-                  <p className="text-3xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">{stats.pending}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1">
+                    Pending
+                  </p>
+                  <p className="text-3xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">
+                    {stats.pending}
+                  </p>
                 </div>
                 <div className="w-12 h-12 bg-gradient-to-br from-yellow-100 to-yellow-200 dark:from-yellow-900/50 dark:to-yellow-800/50 rounded-xl flex items-center justify-center">
                   <span className="text-2xl">⏳</span>
@@ -180,11 +225,18 @@ const MyIssuesPage = () => {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg border border-blue-100 dark:border-blue-900/50 hover-lift animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            <div
+              className="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg border border-blue-100 dark:border-blue-900/50 hover-lift animate-fade-in"
+              style={{ animationDelay: "0.1s" }}
+            >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1">In Progress</p>
-                  <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">{stats.inProgress}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1">
+                    In Progress
+                  </p>
+                  <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                    {stats.inProgress}
+                  </p>
                 </div>
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50 rounded-xl flex items-center justify-center">
                   <span className="text-2xl">🔧</span>
@@ -192,11 +244,18 @@ const MyIssuesPage = () => {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg border border-green-100 dark:border-green-900/50 hover-lift animate-fade-in" style={{ animationDelay: '0.15s' }}>
+            <div
+              className="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg border border-green-100 dark:border-green-900/50 hover-lift animate-fade-in"
+              style={{ animationDelay: "0.15s" }}
+            >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1">Resolved</p>
-                  <p className="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">{stats.resolved}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1">
+                    Resolved
+                  </p>
+                  <p className="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
+                    {stats.resolved}
+                  </p>
                 </div>
                 <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900/50 dark:to-green-800/50 rounded-xl flex items-center justify-center">
                   <span className="text-2xl">✅</span>
@@ -204,11 +263,18 @@ const MyIssuesPage = () => {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg border border-purple-100 dark:border-purple-900/50 hover-lift animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <div
+              className="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg border border-purple-100 dark:border-purple-900/50 hover-lift animate-fade-in"
+              style={{ animationDelay: "0.2s" }}
+            >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1">Total Upvotes</p>
-                  <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-purple-500 bg-clip-text text-transparent">{stats.totalUpvotes}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1">
+                    Total Upvotes
+                  </p>
+                  <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-purple-500 bg-clip-text text-transparent">
+                    {stats.totalUpvotes}
+                  </p>
                 </div>
                 <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900/50 dark:to-purple-800/50 rounded-xl flex items-center justify-center">
                   <span className="text-2xl">👍</span>
@@ -228,20 +294,26 @@ const MyIssuesPage = () => {
                   Filter by Status
                 </label>
                 <div className="flex flex-wrap gap-2">
-                  {statusFilters.map(status => (
+                  {statusFilters.map((status) => (
                     <button
                       key={status}
                       onClick={() => setFilterStatus(status)}
                       className={`px-5 py-2.5 rounded-xl font-semibold transition-all ${
                         filterStatus === status
-                          ? 'bg-gradient-to-r from-primary-600 to-blue-600 text-white shadow-lg shadow-primary-500/50'
-                          : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                          ? "bg-gradient-to-r from-primary-600 to-blue-600 text-white shadow-lg shadow-primary-500/50"
+                          : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`}
                     >
                       {status}
-                      {status !== 'All' && (
+                      {status !== "All" && (
                         <span className="ml-2 text-xs opacity-75">
-                          ({status === 'Pending' ? stats.pending : status === 'In Progress' ? stats.inProgress : stats.resolved})
+                          (
+                          {status === "Pending"
+                            ? stats.pending
+                            : status === "In Progress"
+                              ? stats.inProgress
+                              : stats.resolved}
+                          )
                         </span>
                       )}
                     </button>
@@ -269,8 +341,15 @@ const MyIssuesPage = () => {
             {/* Results Count */}
             <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Showing <span className="font-bold text-primary-600 dark:text-primary-400">{filteredIssues.length}</span> of{' '}
-                <span className="font-bold text-gray-900 dark:text-white">{stats.total}</span> issue{stats.total !== 1 ? 's' : ''}
+                Showing{" "}
+                <span className="font-bold text-primary-600 dark:text-primary-400">
+                  {filteredIssues.length}
+                </span>{" "}
+                of{" "}
+                <span className="font-bold text-gray-900 dark:text-white">
+                  {stats.total}
+                </span>{" "}
+                issue{stats.total !== 1 ? "s" : ""}
               </p>
             </div>
           </div>
@@ -288,12 +367,15 @@ const MyIssuesPage = () => {
             <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-primary-100 to-blue-100 dark:from-primary-900/30 dark:to-blue-900/30 rounded-full flex items-center justify-center animate-bounce-once">
               <span className="text-6xl">📝</span>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">No Issues Reported Yet</h3>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              No Issues Reported Yet
+            </h3>
             <p className="text-gray-500 dark:text-gray-400 mb-8 max-w-md mx-auto">
-              Start making a difference! Report your first civic issue and help improve our community.
+              Start making a difference! Report your first civic issue and help
+              improve our community.
             </p>
             <button
-              onClick={() => window.location.href = '/citizen/dashboard'}
+              onClick={() => (window.location.href = "/citizen/dashboard")}
               className="px-8 py-4 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all hover-lift"
             >
               Report Your First Issue
@@ -302,30 +384,52 @@ const MyIssuesPage = () => {
         )}
 
         {/* Empty State - No Results */}
-        {!loading && !error && issues.length > 0 && filteredIssues.length === 0 && (
-          <div className="text-center py-16 bg-white dark:bg-gray-800 rounded-2xl shadow-lg animate-fade-in">
-            <div className="w-24 h-24 mx-auto mb-6 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
-              <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+        {!loading &&
+          !error &&
+          issues.length > 0 &&
+          filteredIssues.length === 0 && (
+            <div className="text-center py-16 bg-white dark:bg-gray-800 rounded-2xl shadow-lg animate-fade-in">
+              <div className="w-24 h-24 mx-auto mb-6 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
+                <svg
+                  className="w-12 h-12 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                No Issues Found
+              </h3>
+              <p className="text-gray-500 dark:text-gray-400">
+                No issues match your current filters. Try adjusting your search
+                criteria.
+              </p>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No Issues Found</h3>
-            <p className="text-gray-500 dark:text-gray-400">
-              No issues match your current filters. Try adjusting your search criteria.
-            </p>
-          </div>
-        )}
+          )}
 
         {/* Issues Display */}
         {!loading && !error && filteredIssues.length > 0 && (
-          <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-4'}>
+          <div
+            className={
+              viewMode === "grid"
+                ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                : "space-y-4"
+            }
+          >
             {filteredIssues.map((issue, index) => (
               <div
                 key={issue._id}
-                className={`card-enter ${viewMode === 'list' ? 'transform-none' : ''}`}
+                className={`card-enter ${viewMode === "list" ? "transform-none" : ""}`}
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
-                {viewMode === 'grid' ? (
+                {viewMode === "grid" ? (
                   <IssueCard
                     issue={issue}
                     onClick={() => setSelectedIssue(issue)}
@@ -339,14 +443,16 @@ const MyIssuesPage = () => {
                     <div className="flex items-start space-x-4">
                       {issue.imageUrl && (
                         <img
-                          src={`http://localhost:5000${issue.imageUrl}`}
+                          src={issue.imageUrl}
                           alt={issue.title}
                           className="w-24 h-24 rounded-lg object-cover flex-shrink-0"
                         />
                       )}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between mb-2">
-                          <h3 className="text-lg font-bold text-gray-900 dark:text-white">{issue.title}</h3>
+                          <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                            {issue.title}
+                          </h3>
                           <div className="flex items-center space-x-2 flex-shrink-0 ml-4">
                             <StatusBadge status={issue.status} />
                           </div>
@@ -358,7 +464,11 @@ const MyIssuesPage = () => {
                           <div className="flex items-center space-x-4">
                             <CategoryBadge category={issue.category} />
                             <span className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
-                              <svg className="w-4 h-4 mr-1 text-primary-600" fill="currentColor" viewBox="0 0 24 24">
+                              <svg
+                                className="w-4 h-4 mr-1 text-primary-600"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                              >
                                 <path d="M12 4l-8 8h5v8h6v-8h5z" />
                               </svg>
                               {issue.upvoteCount || 0}
@@ -380,18 +490,30 @@ const MyIssuesPage = () => {
 
       {/* Issue Detail Modal */}
       {selectedIssue && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in" onClick={() => setSelectedIssue(null)}>
-          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto animate-scale-in" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in"
+          onClick={() => setSelectedIssue(null)}
+        >
+          <div
+            className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Modal Header */}
             <div className="sticky top-0 bg-gradient-to-r from-primary-600 to-blue-600 px-8 py-6 rounded-t-3xl">
               <div className="flex justify-between items-start">
                 <div className="flex-1 pr-4">
-                  <h2 className="text-2xl font-bold text-white mb-3">{selectedIssue.title}</h2>
+                  <h2 className="text-2xl font-bold text-white mb-3">
+                    {selectedIssue.title}
+                  </h2>
                   <div className="flex flex-wrap items-center gap-3">
                     <CategoryBadge category={selectedIssue.category} />
                     <StatusBadge status={selectedIssue.status} />
                     <span className="flex items-center text-sm text-white/90 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                      <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
                         <path d="M12 4l-8 8h5v8h6v-8h5z" />
                       </svg>
                       {selectedIssue.upvoteCount || 0} upvotes
@@ -402,8 +524,18 @@ const MyIssuesPage = () => {
                   onClick={() => setSelectedIssue(null)}
                   className="flex-shrink-0 w-10 h-10 bg-white/20 backdrop-blur-sm text-white rounded-xl hover:bg-white/30 transition-all flex items-center justify-center"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>
@@ -415,7 +547,7 @@ const MyIssuesPage = () => {
               {selectedIssue.imageUrl && (
                 <div className="rounded-2xl overflow-hidden shadow-lg">
                   <ImageZoom
-                    src={`http://localhost:5000${selectedIssue.imageUrl}`}
+                    src={selectedIssue.imageUrl}
                     alt={selectedIssue.title}
                     className="w-full"
                   />
@@ -441,9 +573,24 @@ const MyIssuesPage = () => {
                     Location
                   </h3>
                   <div className="flex items-center text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
-                    <svg className="w-5 h-5 mr-3 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <svg
+                      className="w-5 h-5 mr-3 text-primary-600 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
                     </svg>
                     <span>{selectedIssue.location}</span>
                   </div>
@@ -454,19 +601,33 @@ const MyIssuesPage = () => {
               <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between text-sm">
                   <div className="flex items-center space-x-2 text-gray-500 dark:text-gray-400">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
                     </svg>
                     <span>
-                      Reported on {new Date(selectedIssue.createdAt).toLocaleDateString('en-US', { 
-                        month: 'long', 
-                        day: 'numeric', 
-                        year: 'numeric' 
-                      })}
+                      Reported on{" "}
+                      {new Date(selectedIssue.createdAt).toLocaleDateString(
+                        "en-US",
+                        {
+                          month: "long",
+                          day: "numeric",
+                          year: "numeric",
+                        },
+                      )}
                     </span>
                   </div>
 
-                  {selectedIssue.status === 'Pending' && (
+                  {selectedIssue.status === "Pending" && (
                     <button
                       onClick={() => {
                         setIssueToDelete(selectedIssue._id);
@@ -474,8 +635,18 @@ const MyIssuesPage = () => {
                       }}
                       className="flex items-center space-x-2 px-4 py-2 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30 transition-all font-semibold"
                     >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                        />
                       </svg>
                       <span>Delete Issue</span>
                     </button>

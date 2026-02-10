@@ -489,7 +489,7 @@ const CitizenDashboard = () => {
                     Issue Image
                   </h3>
                   <ImageZoom
-                    src={`http://localhost:5000${selectedIssue.imageUrl}`}
+                    src={selectedIssue.imageUrl}
                     alt={selectedIssue.title}
                     className="w-full rounded-lg shadow-md"
                   />

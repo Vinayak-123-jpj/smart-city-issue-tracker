@@ -261,8 +261,18 @@ const MapDashboard = () => {
                 className="p-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-xl hover:bg-white dark:hover:bg-gray-700 transition-all shadow-lg hover:shadow-xl hover-lift border border-gray-200 dark:border-gray-700"
                 title="Refresh Data"
               >
-                <svg className="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                <svg
+                  className="w-6 h-6 text-gray-700 dark:text-gray-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
                 </svg>
               </button>
 
@@ -271,14 +281,24 @@ const MapDashboard = () => {
                 onClick={() => setShowHeatmap(!showHeatmap)}
                 className={`px-6 py-3 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl flex items-center space-x-2 ${
                   showHeatmap
-                    ? 'bg-gradient-to-r from-orange-600 to-red-600 text-white'
-                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700'
+                    ? "bg-gradient-to-r from-orange-600 to-red-600 text-white"
+                    : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
                 }`}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  />
                 </svg>
-                <span>{showHeatmap ? 'Hide Heatmap' : 'Show Heatmap'}</span>
+                <span>{showHeatmap ? "Hide Heatmap" : "Show Heatmap"}</span>
               </button>
             </div>
           </div>
@@ -289,7 +309,9 @@ const MapDashboard = () => {
           <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl p-5 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover-lift">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-1">Total Issues</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-1">
+                  Total Issues
+                </p>
                 <p className="text-3xl font-black bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                   {filteredIssues.length}
                 </p>
@@ -301,9 +323,11 @@ const MapDashboard = () => {
           <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl p-5 rounded-2xl shadow-lg border border-yellow-200 dark:border-yellow-900 hover-lift">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-1">Pending</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-1">
+                  Pending
+                </p>
                 <p className="text-3xl font-black text-yellow-600 dark:text-yellow-400">
-                  {filteredIssues.filter(i => i.status === 'Pending').length}
+                  {filteredIssues.filter((i) => i.status === "Pending").length}
                 </p>
               </div>
               <div className="text-4xl">⏳</div>
@@ -313,9 +337,14 @@ const MapDashboard = () => {
           <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl p-5 rounded-2xl shadow-lg border border-blue-200 dark:border-blue-900 hover-lift">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-1">In Progress</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-1">
+                  In Progress
+                </p>
                 <p className="text-3xl font-black text-blue-600 dark:text-blue-400">
-                  {filteredIssues.filter(i => i.status === 'In Progress').length}
+                  {
+                    filteredIssues.filter((i) => i.status === "In Progress")
+                      .length
+                  }
                 </p>
               </div>
               <div className="text-4xl">🔧</div>
@@ -325,9 +354,11 @@ const MapDashboard = () => {
           <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl p-5 rounded-2xl shadow-lg border border-green-200 dark:border-green-900 hover-lift">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-1">Resolved</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-1">
+                  Resolved
+                </p>
                 <p className="text-3xl font-black text-green-600 dark:text-green-400">
-                  {filteredIssues.filter(i => i.status === 'Resolved').length}
+                  {filteredIssues.filter((i) => i.status === "Resolved").length}
                 </p>
               </div>
               <div className="text-4xl">✅</div>
@@ -337,8 +368,12 @@ const MapDashboard = () => {
           <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl p-5 rounded-2xl shadow-lg border border-red-200 dark:border-red-900 hover-lift">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-1">Critical</p>
-                <p className="text-3xl font-black text-red-600 dark:text-red-400">{stats.critical}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-1">
+                  Critical
+                </p>
+                <p className="text-3xl font-black text-red-600 dark:text-red-400">
+                  {stats.critical}
+                </p>
               </div>
               <div className="text-4xl">🔴</div>
             </div>
@@ -357,12 +392,24 @@ const MapDashboard = () => {
                 <input
                   type="text"
                   value={filters.search}
-                  onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+                  onChange={(e) =>
+                    setFilters({ ...filters, search: e.target.value })
+                  }
                   placeholder="Search issues..."
                   className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 dark:text-white"
                 />
-                <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                <svg
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
                 </svg>
               </div>
             </div>
@@ -374,7 +421,9 @@ const MapDashboard = () => {
               </label>
               <select
                 value={filters.status}
-                onChange={(e) => setFilters({ ...filters, status: e.target.value })}
+                onChange={(e) =>
+                  setFilters({ ...filters, status: e.target.value })
+                }
                 className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 dark:text-white"
               >
                 <option value="All">All Status</option>
@@ -391,11 +440,15 @@ const MapDashboard = () => {
               </label>
               <select
                 value={filters.category}
-                onChange={(e) => setFilters({ ...filters, category: e.target.value })}
+                onChange={(e) =>
+                  setFilters({ ...filters, category: e.target.value })
+                }
                 className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 dark:text-white"
               >
-                {categories.map(cat => (
-                  <option key={cat} value={cat}>{cat}</option>
+                {categories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
                 ))}
               </select>
             </div>
@@ -407,7 +460,9 @@ const MapDashboard = () => {
               </label>
               <select
                 value={filters.dateRange}
-                onChange={(e) => setFilters({ ...filters, dateRange: e.target.value })}
+                onChange={(e) =>
+                  setFilters({ ...filters, dateRange: e.target.value })
+                }
                 className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 dark:text-white"
               >
                 <option value="all">All Time</option>
@@ -420,8 +475,15 @@ const MapDashboard = () => {
 
           <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Showing <span className="font-bold text-blue-600 dark:text-blue-400">{filteredIssues.length}</span> of{' '}
-              <span className="font-bold text-gray-900 dark:text-white">{issues.length}</span> issues on map
+              Showing{" "}
+              <span className="font-bold text-blue-600 dark:text-blue-400">
+                {filteredIssues.length}
+              </span>{" "}
+              of{" "}
+              <span className="font-bold text-gray-900 dark:text-white">
+                {issues.length}
+              </span>{" "}
+              issues on map
             </p>
           </div>
         </div>
@@ -432,7 +494,7 @@ const MapDashboard = () => {
             <MapContainer
               center={mapCenter}
               zoom={mapZoom}
-              style={{ height: '100%', width: '100%' }}
+              style={{ height: "100%", width: "100%" }}
               className="z-0"
             >
               <TileLayer
@@ -458,32 +520,40 @@ const MapDashboard = () => {
                       position={[issue.latitude, issue.longitude]}
                       icon={getMarkerIcon(issue.status, issue.category)}
                       eventHandlers={{
-                        click: () => setSelectedIssue(issue)
+                        click: () => setSelectedIssue(issue),
                       }}
                     >
                       <Popup>
                         <div className="p-2 min-w-[250px]">
                           <div className="flex items-start justify-between mb-2">
-                            <h3 className="font-bold text-gray-900 pr-2">{issue.title}</h3>
+                            <h3 className="font-bold text-gray-900 pr-2">
+                              {issue.title}
+                            </h3>
                           </div>
-                          
+
                           <div className="flex flex-wrap gap-2 mb-2">
                             <StatusBadge status={issue.status} />
                             <CategoryBadge category={issue.category} />
                           </div>
-                          
+
                           <p className="text-sm text-gray-600 mb-2 line-clamp-2">
                             {issue.description}
                           </p>
-                          
+
                           <div className="flex items-center justify-between text-xs text-gray-500 mb-2">
                             <span className="flex items-center">
-                              <svg className="w-4 h-4 mr-1 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                              <svg
+                                className="w-4 h-4 mr-1 text-blue-600"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                              >
                                 <path d="M12 4l-8 8h5v8h6v-8h5z" />
                               </svg>
                               {issue.upvoteCount || 0} upvotes
                             </span>
-                            <span>{new Date(issue.createdAt).toLocaleDateString()}</span>
+                            <span>
+                              {new Date(issue.createdAt).toLocaleDateString()}
+                            </span>
                           </div>
 
                           <button
@@ -505,19 +575,27 @@ const MapDashboard = () => {
 
             {/* Map Legend */}
             <div className="absolute bottom-6 right-6 bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-2xl shadow-2xl p-4 z-[1000] border border-gray-200 dark:border-gray-700">
-              <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-3">Map Legend</h4>
+              <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-3">
+                Map Legend
+              </h4>
               <div className="space-y-2">
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <span className="text-xs text-gray-600 dark:text-gray-400">Pending</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-400">
+                    Pending
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                  <span className="text-xs text-gray-600 dark:text-gray-400">In Progress</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-400">
+                    In Progress
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span className="text-xs text-gray-600 dark:text-gray-400">Resolved</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-400">
+                    Resolved
+                  </span>
                 </div>
               </div>
             </div>
@@ -537,7 +615,9 @@ const MapDashboard = () => {
         {filteredIssues.length === 0 && !loading && (
           <div className="mt-6 text-center py-16 bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700">
             <div className="text-6xl mb-4">🗺️</div>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">No Issues Found</h3>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              No Issues Found
+            </h3>
             <p className="text-gray-600 dark:text-gray-400">
               Try adjusting your filters to see more results
             </p>
@@ -547,11 +627,11 @@ const MapDashboard = () => {
 
       {/* Issue Detail Modal */}
       {selectedIssue && (
-        <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-[2000] animate-fade-in" 
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-[2000] animate-fade-in"
           onClick={() => setSelectedIssue(null)}
         >
-          <div 
+          <div
             className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           >
@@ -559,7 +639,9 @@ const MapDashboard = () => {
             <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-6 rounded-t-3xl z-10">
               <div className="flex justify-between items-start">
                 <div className="flex-1 pr-4">
-                  <h2 className="text-2xl font-bold text-white mb-3">{selectedIssue.title}</h2>
+                  <h2 className="text-2xl font-bold text-white mb-3">
+                    {selectedIssue.title}
+                  </h2>
                   <div className="flex flex-wrap gap-3">
                     <CategoryBadge category={selectedIssue.category} />
                     <StatusBadge status={selectedIssue.status} />
@@ -569,8 +651,18 @@ const MapDashboard = () => {
                   onClick={() => setSelectedIssue(null)}
                   className="w-10 h-10 bg-white/20 backdrop-blur-sm text-white rounded-xl hover:bg-white/30 transition-all flex items-center justify-center"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>
@@ -582,7 +674,7 @@ const MapDashboard = () => {
               {selectedIssue.imageUrl && (
                 <div className="rounded-2xl overflow-hidden shadow-lg">
                   <img
-                    src={`http://localhost:5000${selectedIssue.imageUrl}`}
+                    src={selectedIssue.imageUrl}
                     alt={selectedIssue.title}
                     className="w-full"
                   />
@@ -591,7 +683,9 @@ const MapDashboard = () => {
 
               {/* Description */}
               <div>
-                <h3 className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Description</h3>
+                <h3 className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
+                  Description
+                </h3>
                 <p className="text-gray-900 dark:text-white leading-relaxed bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
                   {selectedIssue.description}
                 </p>
@@ -600,10 +694,22 @@ const MapDashboard = () => {
               {/* Location */}
               {selectedIssue.location && (
                 <div>
-                  <h3 className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Location</h3>
+                  <h3 className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
+                    Location
+                  </h3>
                   <div className="flex items-center text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
-                    <svg className="w-5 h-5 mr-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <svg
+                      className="w-5 h-5 mr-3 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                      />
                     </svg>
                     <span>{selectedIssue.location}</span>
                   </div>
@@ -614,13 +720,17 @@ const MapDashboard = () => {
               <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
-                    <span className="text-gray-500 dark:text-gray-400">Reported:</span>
+                    <span className="text-gray-500 dark:text-gray-400">
+                      Reported:
+                    </span>
                     <span className="ml-2 font-semibold text-gray-900 dark:text-white">
                       {new Date(selectedIssue.createdAt).toLocaleDateString()}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-500 dark:text-gray-400">Upvotes:</span>
+                    <span className="text-gray-500 dark:text-gray-400">
+                      Upvotes:
+                    </span>
                     <span className="ml-2 font-semibold text-gray-900 dark:text-white">
                       {selectedIssue.upvoteCount || 0}
                     </span>
@@ -640,11 +750,11 @@ const MapDashboard = () => {
           border-radius: 50% 50% 50% 0;
           position: relative;
           transform: rotate(-45deg);
-          box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         .marker-pin::after {
-          content: '';
+          content: "";
           width: 20px;
           height: 20px;
           margin: 5px;

@@ -294,7 +294,7 @@ const EnhancedAuthorityDashboard = () => {
                 AI-Powered Issue Management & Resolution Dashboard
               </p>
             </div>
-            
+
             <div className="flex items-center space-x-3">
               {/* Quick Actions */}
               <button
@@ -302,15 +302,35 @@ const EnhancedAuthorityDashboard = () => {
                 className="p-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-xl hover:bg-white dark:hover:bg-gray-700 transition-all shadow-lg hover:shadow-xl hover-lift border border-gray-200 dark:border-gray-700"
                 title="Refresh Data"
               >
-                <svg className="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                <svg
+                  className="w-6 h-6 text-gray-700 dark:text-gray-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
                 </svg>
               </button>
 
               {/* Export Button */}
               <button className="px-4 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-semibold hover:from-green-700 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl hover-lift flex items-center space-x-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
                 </svg>
                 <span>Export Report</span>
               </button>
@@ -325,8 +345,18 @@ const EnhancedAuthorityDashboard = () => {
               title="Total Issues"
               value={stats.total}
               icon={
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                <svg
+                  className="w-8 h-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
                 </svg>
               }
               color="blue"
@@ -339,8 +369,18 @@ const EnhancedAuthorityDashboard = () => {
               title="Pending"
               value={stats.pending}
               icon={
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg
+                  className="w-8 h-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
                 </svg>
               }
               color="yellow"
@@ -355,8 +395,18 @@ const EnhancedAuthorityDashboard = () => {
               title="In Progress"
               value={stats.inProgress}
               icon={
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <svg
+                  className="w-8 h-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
                 </svg>
               }
               color="purple"
@@ -371,8 +421,18 @@ const EnhancedAuthorityDashboard = () => {
               title="Resolved"
               value={stats.resolved}
               icon={
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg
+                  className="w-8 h-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
                 </svg>
               }
               color="green"
@@ -386,9 +446,7 @@ const EnhancedAuthorityDashboard = () => {
             <AnimatedStatCard
               title="Critical Priority"
               value={stats.critical}
-              icon={
-                <span className="text-3xl">🔴</span>
-              }
+              icon={<span className="text-3xl">🔴</span>}
               color="red"
               delay={400}
             />
@@ -398,9 +456,7 @@ const EnhancedAuthorityDashboard = () => {
             <AnimatedStatCard
               title="High Priority"
               value={stats.highPriority}
-              icon={
-                <span className="text-3xl">🟠</span>
-              }
+              icon={<span className="text-3xl">🟠</span>}
               color="orange"
               delay={500}
             />
@@ -410,9 +466,7 @@ const EnhancedAuthorityDashboard = () => {
             <AnimatedStatCard
               title="Avg Resolution"
               value={stats.avgResolutionTime}
-              icon={
-                <span className="text-3xl">⏱️</span>
-              }
+              icon={<span className="text-3xl">⏱️</span>}
               color="blue"
               suffix=" days"
               delay={600}
@@ -423,9 +477,7 @@ const EnhancedAuthorityDashboard = () => {
             <AnimatedStatCard
               title="Satisfaction"
               value={stats.citizenSatisfaction}
-              icon={
-                <span className="text-3xl">😊</span>
-              }
+              icon={<span className="text-3xl">😊</span>}
               color="green"
               suffix="%"
               delay={700}
@@ -444,39 +496,69 @@ const EnhancedAuthorityDashboard = () => {
             {/* View Mode Toggle */}
             <div className="flex items-center space-x-2 bg-gray-100 dark:bg-gray-700 rounded-xl p-1.5">
               <button
-                onClick={() => setViewMode('cards')}
+                onClick={() => setViewMode("cards")}
                 className={`px-4 py-2 rounded-lg transition-all font-semibold ${
-                  viewMode === 'cards'
-                    ? 'bg-white dark:bg-gray-600 shadow-lg text-blue-600 dark:text-blue-400'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                  viewMode === "cards"
+                    ? "bg-white dark:bg-gray-600 shadow-lg text-blue-600 dark:text-blue-400"
+                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                 }`}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                  />
                 </svg>
               </button>
               <button
-                onClick={() => setViewMode('table')}
+                onClick={() => setViewMode("table")}
                 className={`px-4 py-2 rounded-lg transition-all font-semibold ${
-                  viewMode === 'table'
-                    ? 'bg-white dark:bg-gray-600 shadow-lg text-blue-600 dark:text-blue-400'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                  viewMode === "table"
+                    ? "bg-white dark:bg-gray-600 shadow-lg text-blue-600 dark:text-blue-400"
+                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                 }`}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               </button>
               <button
-                onClick={() => setViewMode('kanban')}
+                onClick={() => setViewMode("kanban")}
                 className={`px-4 py-2 rounded-lg transition-all font-semibold ${
-                  viewMode === 'kanban'
-                    ? 'bg-white dark:bg-gray-600 shadow-lg text-blue-600 dark:text-blue-400'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                  viewMode === "kanban"
+                    ? "bg-white dark:bg-gray-600 shadow-lg text-blue-600 dark:text-blue-400"
+                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                 }`}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"
+                  />
                 </svg>
               </button>
             </div>
@@ -492,12 +574,24 @@ const EnhancedAuthorityDashboard = () => {
                 <input
                   type="text"
                   value={filters.search}
-                  onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+                  onChange={(e) =>
+                    setFilters({ ...filters, search: e.target.value })
+                  }
                   placeholder="Search by title, description, location..."
                   className="w-full pl-11 pr-4 py-3 bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 dark:focus:border-blue-400 outline-none transition-all dark:text-white"
                 />
-                <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                <svg
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
                 </svg>
               </div>
             </div>
@@ -509,7 +603,9 @@ const EnhancedAuthorityDashboard = () => {
               </label>
               <select
                 value={filters.status}
-                onChange={(e) => setFilters({ ...filters, status: e.target.value })}
+                onChange={(e) =>
+                  setFilters({ ...filters, status: e.target.value })
+                }
                 className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 dark:focus:border-blue-400 outline-none transition-all dark:text-white font-semibold"
               >
                 <option value="All">All Status</option>
@@ -526,11 +622,15 @@ const EnhancedAuthorityDashboard = () => {
               </label>
               <select
                 value={filters.category}
-                onChange={(e) => setFilters({ ...filters, category: e.target.value })}
+                onChange={(e) =>
+                  setFilters({ ...filters, category: e.target.value })
+                }
                 className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 dark:focus:border-blue-400 outline-none transition-all dark:text-white font-semibold"
               >
-                {categories.map(cat => (
-                  <option key={cat} value={cat}>{cat}</option>
+                {categories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
                 ))}
               </select>
             </div>
@@ -542,11 +642,15 @@ const EnhancedAuthorityDashboard = () => {
               </label>
               <select
                 value={filters.priority}
-                onChange={(e) => setFilters({ ...filters, priority: e.target.value })}
+                onChange={(e) =>
+                  setFilters({ ...filters, priority: e.target.value })
+                }
                 className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 dark:focus:border-blue-400 outline-none transition-all dark:text-white font-semibold"
               >
-                {priorities.map(priority => (
-                  <option key={priority} value={priority}>{priority}</option>
+                {priorities.map((priority) => (
+                  <option key={priority} value={priority}>
+                    {priority}
+                  </option>
                 ))}
               </select>
             </div>
@@ -558,7 +662,9 @@ const EnhancedAuthorityDashboard = () => {
               </label>
               <select
                 value={filters.sortBy}
-                onChange={(e) => setFilters({ ...filters, sortBy: e.target.value })}
+                onChange={(e) =>
+                  setFilters({ ...filters, sortBy: e.target.value })
+                }
                 className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 dark:focus:border-blue-400 outline-none transition-all dark:text-white font-semibold"
               >
                 <option value="priority">AI Priority</option>
@@ -573,8 +679,15 @@ const EnhancedAuthorityDashboard = () => {
           <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Showing <span className="font-bold text-blue-600 dark:text-blue-400 text-lg">{filteredIssues.length}</span> of{' '}
-                <span className="font-bold text-gray-900 dark:text-white text-lg">{issues.length}</span> issues
+                Showing{" "}
+                <span className="font-bold text-blue-600 dark:text-blue-400 text-lg">
+                  {filteredIssues.length}
+                </span>{" "}
+                of{" "}
+                <span className="font-bold text-gray-900 dark:text-white text-lg">
+                  {issues.length}
+                </span>{" "}
+                issues
               </p>
 
               {selectedIssues.size > 0 && (
@@ -596,7 +709,9 @@ const EnhancedAuthorityDashboard = () => {
               onClick={selectAllIssues}
               className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-all"
             >
-              {selectedIssues.size === filteredIssues.length ? 'Deselect All' : 'Select All'}
+              {selectedIssues.size === filteredIssues.length
+                ? "Deselect All"
+                : "Select All"}
             </button>
           </div>
 
@@ -608,21 +723,41 @@ const EnhancedAuthorityDashboard = () => {
               </h4>
               <div className="flex flex-wrap gap-3">
                 <button
-                  onClick={() => handleBatchUpdateStatus('In Progress')}
+                  onClick={() => handleBatchUpdateStatus("In Progress")}
                   className="px-5 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl flex items-center space-x-2"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
                   </svg>
                   <span>Mark as In Progress</span>
                 </button>
 
                 <button
-                  onClick={() => handleBatchUpdateStatus('Resolved')}
+                  onClick={() => handleBatchUpdateStatus("Resolved")}
                   className="px-5 py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-all shadow-lg hover:shadow-xl flex items-center space-x-2"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                   <span>Mark as Resolved</span>
                 </button>
@@ -639,7 +774,7 @@ const EnhancedAuthorityDashboard = () => {
         </div>
 
         {/* Issues Display - Cards View */}
-        {viewMode === 'cards' && (
+        {viewMode === "cards" && (
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
             {filteredIssues.map((issue, index) => (
               <div
@@ -664,13 +799,13 @@ const EnhancedAuthorityDashboard = () => {
                 {issue.imageUrl && (
                   <div className="relative w-full h-56 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 overflow-hidden">
                     <img
-                      src={`http://localhost:5000${issue.imageUrl}`}
+                      src={issue.imageUrl}
                       alt={issue.title}
                       className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                       onClick={() => setSelectedIssue(issue)}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                    
+
                     {/* Status Badge on Image */}
                     <div className="absolute top-4 right-4">
                       <StatusBadge status={issue.status} />
@@ -679,7 +814,10 @@ const EnhancedAuthorityDashboard = () => {
                 )}
 
                 {/* Content Section */}
-                <div className="relative p-6 space-y-4" onClick={() => setSelectedIssue(issue)}>
+                <div
+                  className="relative p-6 space-y-4"
+                  onClick={() => setSelectedIssue(issue)}
+                >
                   {/* Header with badges */}
                   <div className="flex items-center justify-between flex-wrap gap-3">
                     <CategoryBadge category={issue.category} />
@@ -702,10 +840,22 @@ const EnhancedAuthorityDashboard = () => {
                   {/* Location */}
                   {issue.location && (
                     <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 bg-gray-100/80 dark:bg-gray-700/50 rounded-xl px-3 py-2">
-                      <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <svg
+                        className="w-4 h-4 mr-2 text-blue-500"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                        />
                       </svg>
-                      <span className="line-clamp-1 font-medium">{issue.location}</span>
+                      <span className="line-clamp-1 font-medium">
+                        {issue.location}
+                      </span>
                     </div>
                   )}
 
@@ -714,16 +864,32 @@ const EnhancedAuthorityDashboard = () => {
                     <div className="flex items-center space-x-6">
                       {/* Upvotes */}
                       <div className="flex items-center space-x-2">
-                        <svg className="w-5 h-5 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                        <svg
+                          className="w-5 h-5 text-blue-600 dark:text-blue-400"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
                           <path d="M12 4l-8 8h5v8h6v-8h5z" />
                         </svg>
-                        <span className="font-bold text-blue-600 dark:text-blue-400">{issue.upvoteCount || 0}</span>
+                        <span className="font-bold text-blue-600 dark:text-blue-400">
+                          {issue.upvoteCount || 0}
+                        </span>
                       </div>
 
                       {/* Date */}
                       <div className="flex items-center text-xs text-gray-400 dark:text-gray-500 font-medium">
-                        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <svg
+                          className="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
                         </svg>
                         {formatDate(issue.createdAt)}
                       </div>
@@ -732,22 +898,22 @@ const EnhancedAuthorityDashboard = () => {
 
                   {/* Quick Actions */}
                   <div className="flex items-center gap-2 pt-4">
-                    {issue.status === 'Pending' && (
+                    {issue.status === "Pending" && (
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleUpdateStatus(issue._id, 'In Progress');
+                          handleUpdateStatus(issue._id, "In Progress");
                         }}
                         className="flex-1 px-4 py-2 bg-blue-600 text-white text-sm rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-md hover:shadow-lg"
                       >
                         Start Work
                       </button>
                     )}
-                    {issue.status === 'In Progress' && (
+                    {issue.status === "In Progress" && (
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleUpdateStatus(issue._id, 'Resolved');
+                          handleUpdateStatus(issue._id, "Resolved");
                         }}
                         className="flex-1 px-4 py-2 bg-green-600 text-white text-sm rounded-xl font-semibold hover:bg-green-700 transition-all shadow-md hover:shadow-lg"
                       >
@@ -759,14 +925,32 @@ const EnhancedAuthorityDashboard = () => {
                         e.stopPropagation();
                         analyzeIssueWithAI(issue);
                       }}
-                      disabled={analyzingIssues.has(issue._id) || aiAnalysis[issue._id]}
+                      disabled={
+                        analyzingIssues.has(issue._id) || aiAnalysis[issue._id]
+                      }
                       className="flex-1 px-4 py-2 bg-purple-600 text-white text-sm rounded-xl font-semibold hover:bg-purple-700 transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-1"
                     >
                       {analyzingIssues.has(issue._id) ? (
                         <>
-                          <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          <svg
+                            className="animate-spin h-4 w-4"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
                           </svg>
                           <span>Analyzing...</span>
                         </>
@@ -774,8 +958,18 @@ const EnhancedAuthorityDashboard = () => {
                         <span>✓ Analyzed</span>
                       ) : (
                         <>
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                            />
                           </svg>
                           <span>AI Analyze</span>
                         </>
@@ -789,7 +983,7 @@ const EnhancedAuthorityDashboard = () => {
         )}
 
         {/* Issues Display - Table View */}
-        {viewMode === 'table' && (
+        {viewMode === "table" && (
           <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -798,18 +992,35 @@ const EnhancedAuthorityDashboard = () => {
                     <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">
                       <input
                         type="checkbox"
-                        checked={selectedIssues.size === filteredIssues.length && filteredIssues.length > 0}
+                        checked={
+                          selectedIssues.size === filteredIssues.length &&
+                          filteredIssues.length > 0
+                        }
                         onChange={selectAllIssues}
                         className="w-5 h-5 rounded border-2 border-white text-blue-600 focus:ring-4 focus:ring-blue-500/30 cursor-pointer"
                       />
                     </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">Issue</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">Category</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">Status</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">Priority</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">Upvotes</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">Date</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">Actions</th>
+                    <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">
+                      Issue
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">
+                      Category
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">
+                      Status
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">
+                      Priority
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">
+                      Upvotes
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">
+                      Date
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -819,7 +1030,10 @@ const EnhancedAuthorityDashboard = () => {
                       className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer"
                       onClick={() => setSelectedIssue(issue)}
                     >
-                      <td className="px-6 py-4" onClick={(e) => e.stopPropagation()}>
+                      <td
+                        className="px-6 py-4"
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         <input
                           type="checkbox"
                           checked={selectedIssues.has(issue._id)}
@@ -831,14 +1045,18 @@ const EnhancedAuthorityDashboard = () => {
                         <div className="flex items-center space-x-3">
                           {issue.imageUrl && (
                             <img
-                              src={`http://localhost:5000${issue.imageUrl}`}
+                              src={issue.imageUrl}
                               alt={issue.title}
                               className="w-16 h-16 rounded-xl object-cover shadow-md"
                             />
                           )}
                           <div>
-                            <p className="font-bold text-gray-900 dark:text-white line-clamp-1">{issue.title}</p>
-                            <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-1">{issue.description}</p>
+                            <p className="font-bold text-gray-900 dark:text-white line-clamp-1">
+                              {issue.title}
+                            </p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-1">
+                              {issue.description}
+                            </p>
                           </div>
                         </div>
                       </td>
@@ -853,28 +1071,41 @@ const EnhancedAuthorityDashboard = () => {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center space-x-2">
-                          <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                          <svg
+                            className="w-5 h-5 text-blue-600"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
                             <path d="M12 4l-8 8h5v8h6v-8h5z" />
                           </svg>
-                          <span className="font-bold text-gray-900 dark:text-white">{issue.upvoteCount || 0}</span>
+                          <span className="font-bold text-gray-900 dark:text-white">
+                            {issue.upvoteCount || 0}
+                          </span>
                         </div>
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400 font-medium">
                         {formatDate(issue.createdAt)}
                       </td>
-                      <td className="px-6 py-4" onClick={(e) => e.stopPropagation()}>
+                      <td
+                        className="px-6 py-4"
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         <div className="flex items-center space-x-2">
-                          {issue.status === 'Pending' && (
+                          {issue.status === "Pending" && (
                             <button
-                              onClick={() => handleUpdateStatus(issue._id, 'In Progress')}
+                              onClick={() =>
+                                handleUpdateStatus(issue._id, "In Progress")
+                              }
                               className="px-3 py-1.5 bg-blue-600 text-white text-xs rounded-lg font-semibold hover:bg-blue-700 transition-all"
                             >
                               Start
                             </button>
                           )}
-                          {issue.status === 'In Progress' && (
+                          {issue.status === "In Progress" && (
                             <button
-                              onClick={() => handleUpdateStatus(issue._id, 'Resolved')}
+                              onClick={() =>
+                                handleUpdateStatus(issue._id, "Resolved")
+                              }
                               className="px-3 py-1.5 bg-green-600 text-white text-xs rounded-lg font-semibold hover:bg-green-700 transition-all"
                             >
                               Resolve
@@ -891,19 +1122,23 @@ const EnhancedAuthorityDashboard = () => {
         )}
 
         {/* Issues Display - Kanban View */}
-        {viewMode === 'kanban' && (
+        {viewMode === "kanban" && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {['Pending', 'In Progress', 'Resolved'].map((status) => {
-              const statusIssues = filteredIssues.filter(issue => issue.status === status);
+            {["Pending", "In Progress", "Resolved"].map((status) => {
+              const statusIssues = filteredIssues.filter(
+                (issue) => issue.status === status,
+              );
               const statusColors = {
-                'Pending': 'from-yellow-500 to-orange-500',
-                'In Progress': 'from-blue-500 to-indigo-500',
-                'Resolved': 'from-green-500 to-emerald-500'
+                Pending: "from-yellow-500 to-orange-500",
+                "In Progress": "from-blue-500 to-indigo-500",
+                Resolved: "from-green-500 to-emerald-500",
               };
-              
+
               return (
                 <div key={status} className="flex flex-col">
-                  <div className={`bg-gradient-to-r ${statusColors[status]} text-white px-6 py-4 rounded-t-2xl shadow-lg`}>
+                  <div
+                    className={`bg-gradient-to-r ${statusColors[status]} text-white px-6 py-4 rounded-t-2xl shadow-lg`}
+                  >
                     <div className="flex items-center justify-between">
                       <h3 className="text-xl font-bold">{status}</h3>
                       <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-bold">
@@ -911,7 +1146,7 @@ const EnhancedAuthorityDashboard = () => {
                       </span>
                     </div>
                   </div>
-                  
+
                   <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-b-2xl shadow-xl border-x border-b border-gray-200/50 dark:border-gray-700/50 p-4 space-y-4 min-h-[500px]">
                     {statusIssues.map((issue) => (
                       <div
@@ -923,23 +1158,29 @@ const EnhancedAuthorityDashboard = () => {
                           <CategoryBadge category={issue.category} />
                           <AIPriorityBadge issue={issue} />
                         </div>
-                        
+
                         <h4 className="font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
                           {issue.title}
                         </h4>
-                        
+
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
                           {issue.description}
                         </p>
-                        
+
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-2">
-                            <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                            <svg
+                              className="w-4 h-4 text-blue-600"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                            >
                               <path d="M12 4l-8 8h5v8h6v-8h5z" />
                             </svg>
-                            <span className="text-sm font-bold text-blue-600">{issue.upvoteCount || 0}</span>
+                            <span className="text-sm font-bold text-blue-600">
+                              {issue.upvoteCount || 0}
+                            </span>
                           </div>
-                          
+
                           <span className="text-xs text-gray-500 dark:text-gray-400">
                             {formatDate(issue.createdAt)}
                           </span>
@@ -959,7 +1200,9 @@ const EnhancedAuthorityDashboard = () => {
             <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-full flex items-center justify-center">
               <span className="text-6xl">🔍</span>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">No Issues Found</h3>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              No Issues Found
+            </h3>
             <p className="text-gray-500 dark:text-gray-400">
               Try adjusting your filters to see more results
             </p>
@@ -969,19 +1212,31 @@ const EnhancedAuthorityDashboard = () => {
 
       {/* Issue Detail Modal */}
       {selectedIssue && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in" onClick={() => setSelectedIssue(null)}>
-          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-6xl w-full max-h-[95vh] overflow-y-auto animate-scale-in" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in"
+          onClick={() => setSelectedIssue(null)}
+        >
+          <div
+            className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-6xl w-full max-h-[95vh] overflow-y-auto animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Modal Header */}
             <div className="sticky top-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 px-8 py-6 rounded-t-3xl z-10">
               <div className="flex justify-between items-start">
                 <div className="flex-1 pr-4">
-                  <h2 className="text-3xl font-bold text-white mb-3">{selectedIssue.title}</h2>
+                  <h2 className="text-3xl font-bold text-white mb-3">
+                    {selectedIssue.title}
+                  </h2>
                   <div className="flex flex-wrap items-center gap-3">
                     <CategoryBadge category={selectedIssue.category} />
                     <StatusBadge status={selectedIssue.status} />
                     <AIPriorityBadge issue={selectedIssue} />
                     <span className="flex items-center text-sm text-white/90 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                      <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
                         <path d="M12 4l-8 8h5v8h6v-8h5z" />
                       </svg>
                       {selectedIssue.upvoteCount || 0} upvotes
@@ -992,8 +1247,18 @@ const EnhancedAuthorityDashboard = () => {
                   onClick={() => setSelectedIssue(null)}
                   className="flex-shrink-0 w-10 h-10 bg-white/20 backdrop-blur-sm text-white rounded-xl hover:bg-white/30 transition-all flex items-center justify-center"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>
@@ -1008,7 +1273,7 @@ const EnhancedAuthorityDashboard = () => {
                   {selectedIssue.imageUrl && (
                     <div className="rounded-2xl overflow-hidden shadow-lg">
                       <ImageZoom
-                        src={`http://localhost:5000${selectedIssue.imageUrl}`}
+                        src={selectedIssue.imageUrl}
                         alt={selectedIssue.title}
                         className="w-full"
                       />
@@ -1054,26 +1319,34 @@ const EnhancedAuthorityDashboard = () => {
                       <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800">
                         <div className="grid grid-cols-2 gap-4 mb-4">
                           <div>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Urgency Score</p>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                              Urgency Score
+                            </p>
                             <p className="text-3xl font-bold text-purple-600 dark:text-purple-400">
                               {aiAnalysis[selectedIssue._id].urgencyScore}/10
                             </p>
                           </div>
                           <div>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Sentiment</p>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                              Sentiment
+                            </p>
                             <p className="text-lg font-bold text-gray-900 dark:text-white capitalize">
                               {aiAnalysis[selectedIssue._id].sentiment}
                             </p>
                           </div>
                         </div>
                         <div className="pt-4 border-t border-purple-200 dark:border-purple-800">
-                          <p className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Suggested Action:</p>
+                          <p className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
+                            Suggested Action:
+                          </p>
                           <p className="text-gray-600 dark:text-gray-400">
                             {aiAnalysis[selectedIssue._id].suggestedAction}
                           </p>
                         </div>
                         <div className="pt-4 border-t border-purple-200 dark:border-purple-800 mt-4">
-                          <p className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Estimated Impact:</p>
+                          <p className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
+                            Estimated Impact:
+                          </p>
                           <p className="text-gray-600 dark:text-gray-400">
                             {aiAnalysis[selectedIssue._id].estimatedImpact}
                           </p>
@@ -1093,54 +1366,119 @@ const EnhancedAuthorityDashboard = () => {
 
                   {/* Quick Actions */}
                   <div className="bg-white dark:bg-gray-700 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-600">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Quick Actions</h3>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                      Quick Actions
+                    </h3>
                     <div className="space-y-3">
-                      {selectedIssue.status === 'Pending' && (
+                      {selectedIssue.status === "Pending" && (
                         <button
-                          onClick={() => handleUpdateStatus(selectedIssue._id, 'In Progress')}
+                          onClick={() =>
+                            handleUpdateStatus(selectedIssue._id, "In Progress")
+                          }
                           className="w-full px-4 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center space-x-2"
                         >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M13 10V3L4 14h7v7l9-11h-7z"
+                            />
                           </svg>
                           <span>Start Working</span>
                         </button>
                       )}
-                      {selectedIssue.status === 'In Progress' && (
+                      {selectedIssue.status === "In Progress" && (
                         <button
-                          onClick={() => handleUpdateStatus(selectedIssue._id, 'Resolved')}
+                          onClick={() =>
+                            handleUpdateStatus(selectedIssue._id, "Resolved")
+                          }
                           className="w-full px-4 py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center space-x-2"
                         >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
                           </svg>
                           <span>Mark as Resolved</span>
                         </button>
                       )}
                       <button
                         onClick={() => analyzeIssueWithAI(selectedIssue)}
-                        disabled={analyzingIssues.has(selectedIssue._id) || aiAnalysis[selectedIssue._id]}
+                        disabled={
+                          analyzingIssues.has(selectedIssue._id) ||
+                          aiAnalysis[selectedIssue._id]
+                        }
                         className="w-full px-4 py-3 bg-purple-600 text-white rounded-xl font-semibold hover:bg-purple-700 transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                       >
                         {analyzingIssues.has(selectedIssue._id) ? (
                           <>
-                            <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            <svg
+                              className="animate-spin h-5 w-5"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              ></circle>
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              ></path>
                             </svg>
                             <span>Analyzing...</span>
                           </>
                         ) : aiAnalysis[selectedIssue._id] ? (
                           <>
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            <svg
+                              className="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                              />
                             </svg>
                             <span>✓ Analyzed</span>
                           </>
                         ) : (
                           <>
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            <svg
+                              className="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                              />
                             </svg>
                             <span>AI Analyze</span>
                           </>
@@ -1151,29 +1489,40 @@ const EnhancedAuthorityDashboard = () => {
 
                   {/* Issue Details */}
                   <div className="bg-white dark:bg-gray-700 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-600">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Issue Details</h3>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                      Issue Details
+                    </h3>
                     <div className="space-y-3">
                       <div>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Reporter</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                          Reporter
+                        </p>
                         <p className="text-sm font-bold text-gray-900 dark:text-white">
-                          {selectedIssue.reportedBy?.name || 'Anonymous'}
+                          {selectedIssue.reportedBy?.name || "Anonymous"}
                         </p>
                       </div>
                       <div>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Reported On</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                          Reported On
+                        </p>
                         <p className="text-sm font-bold text-gray-900 dark:text-white">
-                          {new Date(selectedIssue.createdAt).toLocaleDateString('en-US', {
-                            month: 'long',
-                            day: 'numeric',
-                            year: 'numeric',
-                            hour: '2-digit',
-                            minute: '2-digit'
-                          })}
+                          {new Date(selectedIssue.createdAt).toLocaleDateString(
+                            "en-US",
+                            {
+                              month: "long",
+                              day: "numeric",
+                              year: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            },
+                          )}
                         </p>
                       </div>
                       {selectedIssue.location && (
                         <div>
-                          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Location</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                            Location
+                          </p>
                           <p className="text-sm font-bold text-gray-900 dark:text-white">
                             {selectedIssue.location}
                           </p>

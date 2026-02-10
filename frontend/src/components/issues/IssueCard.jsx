@@ -37,7 +37,7 @@ const EnhancedIssueCard = ({ issue, onClick }) => {
       {issue.imageUrl && (
         <div className="relative w-full h-56 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 overflow-hidden flex-shrink-0">
           <img
-            src={`http://localhost:5000${issue.imageUrl}`}
+            src={issue.imageUrl}
             alt={issue.title}
             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
           />
