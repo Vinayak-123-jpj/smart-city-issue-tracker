@@ -390,34 +390,6 @@ smart-city-issue-tracker/
 
 ---
 
-## 🎯 Future Roadmap
-
-### Phase 1 (Q1 2026)
-- [ ] 📱 Progressive Web App (PWA) support
-- [ ] 📧 Email notifications for status updates
-- [ ] 📊 Advanced charts (Chart.js integration)
-- [ ] 🌐 Multi-language support (i18n)
-
-### Phase 2 (Q2 2026)
-- [ ] 📱 React Native mobile app
-- [ ] 🔔 Push notifications
-- [ ] 📄 Export reports (PDF/CSV)
-- [ ] 🎨 Theme customization
-
-### Phase 3 (Q3 2026)
-- [ ] 🤖 ML-based issue prediction
-- [ ] 🗳️ Voting system improvements
-- [ ] 📸 Image recognition for auto-categorization
-- [ ] 🔗 Social media sharing
-
-### Phase 4 (Q4 2026)
-- [ ] 🏢 Multi-city support
-- [ ] 👥 Collaborative issue resolution
-- [ ] 📈 Public transparency dashboard
-- [ ] 🔌 Third-party API integrations
-
----
-
 ## 🤝 Contributing
 
 Contributions make the open-source community amazing! Any contributions you make are **greatly appreciated**.
@@ -538,21 +510,16 @@ npm run lint
 
 ---
 
-## 📜 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
 ---
 
 ## 👨‍💻 Author
 
 **Vinayak Dhyani**
 
-- 🌐 Portfolio: [vinayakdhyani.dev](https://vinayakdhyani.dev) *(if available)*
-- 📧 Email: vinayakdhyani@example.com
-- 💼 LinkedIn: [linkedin.com/in/vinayak-dhyani](https://linkedin.com/in/vinayak-dhyani)
+- 📧 Email: vinayakdhyani27@gmail.com
+- 💼 LinkedIn: [linkedin.com/in/vinayak-dhyani](https://www.linkedin.com/in/vinayak-dhyani-18b547373/)
 - 🐙 GitHub: [@Vinayak-123-jpi](https://github.com/Vinayak-123-jpi)
-- 🐦 Twitter: [@vinayakdhyani](https://twitter.com/vinayakdhyani) *(if available)*
+
 
 ---
 
